@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kinda Sorta Rather Bland</title>
-    <link>/</link>
+    <link>http://ratherbland.com/</link>
     <description>Recent content on Kinda Sorta Rather Bland</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://ratherbland.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About Hugo</title>
-      <link>/about/</link>
+      <link>http://ratherbland.com/about/</link>
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
+      <guid>http://ratherbland.com/about/</guid>
       <description>Hugo is a static site engine written in Go.
 It makes use of a variety of open source projects including:
  Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>

@@ -3,20 +3,20 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/about/</loc>
+    <loc>http://ratherbland.com/about/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>http://ratherbland.com/categories/</loc>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>http://ratherbland.com/</loc>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>http://ratherbland.com/tags/</loc>
   </url>
   
 </urlset>
