@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://quantel.io/docs/python/</loc>
+         <lastmod>2021-08-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://quantel.io/docs/python/guide/intro/</loc>
+         <lastmod>2021-08-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://quantel.io/docs/python/guide/ticker/financials/</loc>
+         <lastmod>2021-08-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://quantel.io/docs/python/guide/ticker/insights/</loc>
+         <lastmod>2021-08-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://quantel.io/docs/python/reference/quantel-reference/</loc>
+         <lastmod>2021-08-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>

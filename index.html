@@ -40,7 +40,11 @@
         font-weight: bold;
       }
       .gradient {
-        background-image: linear-gradient(90deg, #6868da, #9267d6, #b367d0, #ce69c8, #e46cbf, #f16eaf, #fa73a1, #ff7b93, #ff857e, #ff9568, #ffa953, #fdbf44);      }
+        background-image: linear-gradient(90deg, #6868da, #9267d6, #b367d0, #ce69c8, #e46cbf, #f16eaf, #fa73a1, #ff7b93, #ff857e, #ff9568, #ffa953, #fdbf44);
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
     </style>
   </head>
   <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
@@ -66,13 +70,20 @@
               <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="/">Home</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="/docs/">Documentation</a>
+              <div class="dropdown inline-block relative">
+                <a class="inline-block text-black no-underline hover:text-gray-800 py-2 px-4 inline-flex items-center" href="/docs/">Documentation
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                </a>
+                <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+                  <li class=""><a class="rounded-t bg-white hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap" href="/docs/api/">API</a></li>
+                  <li class=""><a class="rounded-b bg-white hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap" href="/docs/python/">Python Library</a></li>
+                </ul>
+              </div>
+            <li class="mr-3">
+              <a class="inline-block text-black no-underline hover:text-gray-800 hover:underline py-2 px-4" href="/#pricing">Pricing</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#pricing">Pricing</a>
-            </li>
-            <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="/blog">Blog</a>
+              <a class="inline-block text-black no-underline hover:text-gray-800 hover:underline py-2 px-4" href="/blog">Blog</a>
             </li>
           </ul>
           <a href="http://links.quantel.io/getstarted">
@@ -92,12 +103,12 @@
       <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <!--Left Col-->
         <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-          <p class="uppercase tracking-loose w-full">What business are you?</p>
+          <p class="uppercase tracking-loose w-full">What are you?</p>
           <h1 class="my-4 text-5xl font-bold leading-tight">
             The financial data platform built for humans.
           </h1>
           <p class="leading-normal text-2xl mb-8">
-            Access 40+ years of world class raw financial data from almost 25k companies across the globe.
+            Access 40+ years of world-class raw financial data from almost 25k companies across the globe.
           </p>
           <a href="http://links.quantel.io/getstarted">
             <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
@@ -148,7 +159,7 @@
             </p>
             <a href="https://docs.google.com/spreadsheets/d/1gm_hU2xs6N31MHCx3ocjbBaxFyofHUBH3hFA5cFqrNs/edit?usp=sharing">
               <button class="mx-auto lg:mx-0 hover:underline font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out gradient text-white">
-                Example sheet.
+                Example sheet
               </button>
             </a>
 
