@@ -1,7 +1,7 @@
 {
   "servers": [
     {
-      "url": "https://quantel-io.p.rapidapi.com"
+      "url": "https://quantel-io.p.rapidapi.com/"
     }
   ],
   "security": [
@@ -771,9 +771,88 @@
           }
         },
         "summary": "Income Statement",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
+        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- *ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A\n\nNotes.\n- ASX does not support quarterly reports",
         "tags": [
           "Income Statement"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "tickers",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
+    "/income-statement-ttm/{tickers}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IncomeStatementTTM"
+                  }
+                },
+                "example": [
+                  {
+                    "symbol": "AAPL",
+                    "reportedCurrency": "USD",
+                    "period": "TTM",
+                    "revenueTTM": 347155000000,
+                    "costOfRevenueTTM": 204804000000,
+                    "grossProfitTTM": 142351000000,
+                    "researchAndDevelopmentExpensesTTM": 21120000000,
+                    "generalAndAdministrativeExpensesTTM": 4936000000,
+                    "sellingAndMarketingExpensesTTM": 0,
+                    "sellingGeneralAndAdministrativeExpensesTTM": 21293000000,
+                    "otherExpensesTTM": 0,
+                    "operatingExpensesTTM": 42413000000,
+                    "costAndExpensesTTM": 247217000000,
+                    "interestExpenseTTM": 2607000000,
+                    "depreciationAndAmortizationTTM": 10997000000,
+                    "ebitdaTTM": 114464000000,
+                    "operatingIncomeTTM": 99938000000,
+                    "totalOtherIncomeExpensesNetTTM": -922000000,
+                    "incomeBeforeTaxTTM": 100860000000,
+                    "incomeTaxExpenseTTM": 14058000000,
+                    "netIncomeTTM": 86802000000
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Income Statement TTM",
+        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
+        "tags": [
+          "Income Statement TTM"
         ]
       },
       "parameters": [
@@ -974,7 +1053,7 @@
           }
         },
         "summary": "Balance Sheet",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
+        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- *ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A\n\nNotes.\n- ASX does not support quarterly reports",
         "tags": [
           "Balance Sheet"
         ]
@@ -1181,9 +1260,100 @@
           }
         },
         "summary": "Cash Flow",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
+        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- *ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A\n\nNotes.\n- ASX does not support quarterly reports",
         "tags": [
           "Cash Flow Statement"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "tickers",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
+    "/cash-flow-statement-ttm/{tickers}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "csv"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CashflowSchemaTTM"
+                  }
+                },
+                "example": [
+                  {
+                    "symbol": "AAPL",
+                    "reportedCurrency": "USD",
+                    "period": "TTM",
+                    "netIncomeTTM": 86802000000,
+                    "depreciationAndAmortizationTTM": 10997000000,
+                    "deferredIncomeTaxTTM": -1134000000,
+                    "stockBasedCompensationTTM": 7685000000,
+                    "changeInWorkingCapitalTTM": 756000000,
+                    "accountsReceivablesTTM": 452000000,
+                    "inventoryTTM": -1350000000,
+                    "accountsPayablesTTM": 4939000000,
+                    "otherWorkingCapitalTTM": 2170000000,
+                    "otherNonCashItemsTTM": -692000000,
+                    "netCashProvidedByOperatingActivitiesTTM": 104414000000,
+                    "investmentsInPropertyPlantAndEquipmentTTM": -9646000000,
+                    "acquisitionsNetTTM": -64000000,
+                    "purchasesOfInvestmentsTTM": -112384000000,
+                    "salesMaturitiesOfInvestmentsTTM": 112425000000,
+                    "otherInvestingActivitesTTM": -180000000,
+                    "netCashUsedForInvestingActivitesTTM": -9849000000,
+                    "debtRepaymentTTM": -7500000000,
+                    "commonStockIssuedTTM": 1011000000,
+                    "commonStockRepurchasedTTM": -83410000000,
+                    "dividendsPaidTTM": -14338000000,
+                    "otherFinancingActivitesTTM": 9909000000,
+                    "netCashUsedProvidedByFinancingActivitiesTTM": -94328000000,
+                    "effectOfForexChangesOnCashTTM": 0,
+                    "netChangeInCashTTM": 237000000,
+                    "cashAtEndOfPeriodTTM": 152790000000,
+                    "cashAtBeginningOfPeriodTTM": 152553000000,
+                    "operatingCashFlowTTM": 104414000000,
+                    "capitalExpenditureTTM": -9646000000,
+                    "freeCashFlowTTM": 94768000000
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Cash Flow",
+        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- *ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A\n\nNotes.\n- ASX does not support quarterly reports",
+        "tags": [
+          "Cash Flow Statement TTM"
         ]
       },
       "parameters": [
@@ -1954,29 +2124,16 @@
     },
     "/daily-price/{tickers}": {
       "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "csv"
-              ]
-            }
-          }
-        ],
         "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DailyPrice"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DailyPrice"
+                  }
                 },
                 "example": [
                   {
@@ -2037,7 +2194,7 @@
             "$ref": "#/components/responses/DEFAULT_ERROR"
           }
         },
-        "summary": "Daily Price",
+        "summary": "Historical Daily Price",
         "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- OSE (Oslo Stock Exchange)",
         "tags": [
           "Daily Historical Price"
@@ -2094,6 +2251,10 @@
       "description": "Get company income statements by year/quarter"
     },
     {
+      "name": "Income Statement TTM",
+      "description": "Get company income statements trailing twelve months"
+    },
+    {
       "name": "Income Statement Growth",
       "description": "Income statement growth YoY"
     },
@@ -2107,6 +2268,10 @@
     },
     {
       "name": "Cash Flow Statement",
+      "description": "Get company cash flow statements by year/quarter"
+    },
+    {
+      "name": "Cash Flow Statement TTM",
       "description": "Get company cash flow statements by year/quarter"
     },
     {
@@ -2144,10 +2309,10 @@
       "Symbol": {
         "type": "object",
         "properties": {
-          "name": {
+          "symbol": {
             "type": "string"
           },
-          "symbol": {
+          "name": {
             "type": "string"
           },
           "price": {
@@ -2165,10 +2330,6 @@
             "type": "integer",
             "description": "Error code"
           },
-          "errors": {
-            "type": "object",
-            "description": "Errors"
-          },
           "status": {
             "type": "string",
             "description": "Error name"
@@ -2176,6 +2337,10 @@
           "message": {
             "type": "string",
             "description": "Error message"
+          },
+          "errors": {
+            "type": "object",
+            "description": "Errors"
           }
         }
       },
@@ -2246,7 +2411,7 @@
             "type": "string"
           },
           "fullTimeEmployees": {
-            "type": "integer"
+            "type": "string"
           },
           "phone": {
             "type": "string"
@@ -2286,52 +2451,49 @@
       "Quote": {
         "type": "object",
         "properties": {
-          "exchange": {
-            "type": "string"
-          },
-          "yearHigh": {
-            "type": "number"
-          },
-          "changesPercentage": {
-            "type": "number"
-          },
-          "eps": {
-            "type": "number"
-          },
-          "symbol": {
-            "type": "string"
-          },
-          "previousClose": {
-            "type": "number"
-          },
-          "open": {
-            "type": "number"
-          },
-          "priceAvg50": {
-            "type": "number"
-          },
-          "yearLow": {
-            "type": "number"
-          },
-          "dayHigh": {
-            "type": "number"
-          },
-          "change": {
-            "type": "number"
-          },
-          "priceAvg200": {
-            "type": "number"
-          },
           "avgVolume": {
-            "type": "integer"
-          },
-          "timestamp": {
             "type": "integer"
           },
           "dayLow": {
             "type": "number"
           },
+          "changesPercentage": {
+            "type": "number"
+          },
+          "volume": {
+            "type": "integer"
+          },
+          "priceAvg200": {
+            "type": "number"
+          },
+          "yearHigh": {
+            "type": "number"
+          },
           "marketCap": {
+            "type": "number"
+          },
+          "pe": {
+            "type": "number"
+          },
+          "eps": {
+            "type": "number"
+          },
+          "sharesOutstanding": {
+            "type": "integer"
+          },
+          "change": {
+            "type": "number"
+          },
+          "yearLow": {
+            "type": "number"
+          },
+          "previousClose": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "priceAvg50": {
             "type": "number"
           },
           "name": {
@@ -2340,17 +2502,20 @@
           "earningsAnnouncement": {
             "type": "string"
           },
-          "volume": {
+          "symbol": {
+            "type": "string"
+          },
+          "exchange": {
+            "type": "string"
+          },
+          "timestamp": {
             "type": "integer"
           },
-          "price": {
+          "open": {
             "type": "number"
           },
-          "pe": {
+          "dayHigh": {
             "type": "number"
-          },
-          "sharesOutstanding": {
-            "type": "integer"
           }
         }
       },
@@ -2584,6 +2749,83 @@
             "type": "integer"
           },
           "weightedAverageShsOutDil": {
+            "type": "integer"
+          }
+        }
+      },
+      "IncomeStatementTTM": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "reportedCurrency": {
+            "type": "string"
+          },
+          "fillingDate": {
+            "type": "string"
+          },
+          "acceptedDate": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          },
+          "revenueTTM": {
+            "type": "integer"
+          },
+          "costOfRevenueTTM": {
+            "type": "integer"
+          },
+          "grossProfitTTM": {
+            "type": "integer"
+          },
+          "researchAndDevelopmentExpensesTTM": {
+            "type": "integer"
+          },
+          "generalAndAdministrativeExpensesTTM": {
+            "type": "integer"
+          },
+          "sellingAndMarketingExpensesTTM": {
+            "type": "integer"
+          },
+          "sellingGeneralAndAdministrativeExpensesTTM": {
+            "type": "integer"
+          },
+          "otherExpensesTTM": {
+            "type": "integer"
+          },
+          "operatingExpensesTTM": {
+            "type": "integer"
+          },
+          "costAndExpensesTTM": {
+            "type": "integer"
+          },
+          "interestExpenseTTM": {
+            "type": "integer"
+          },
+          "depreciationAndAmortizationTTM": {
+            "type": "integer"
+          },
+          "ebitdaTTM": {
+            "type": "integer"
+          },
+          "operatingIncomeTTM": {
+            "type": "integer"
+          },
+          "totalOtherIncomeExpensesNetTTM": {
+            "type": "integer"
+          },
+          "incomeBeforeTaxTTM": {
+            "type": "integer"
+          },
+          "incomeTaxExpenseTTM": {
+            "type": "integer"
+          },
+          "netIncomeTTM": {
             "type": "integer"
           }
         }
@@ -3060,6 +3302,119 @@
             "type": "integer"
           },
           "freeCashFlow": {
+            "type": "integer"
+          }
+        }
+      },
+      "CashflowSchemaTTM": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "reportedCurrency": {
+            "type": "string"
+          },
+          "fillingDate": {
+            "type": "string"
+          },
+          "acceptedDate": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          },
+          "netIncomeTTM": {
+            "type": "integer"
+          },
+          "depreciationAndAmortizationTTM": {
+            "type": "integer"
+          },
+          "deferredIncomeTaxTTM": {
+            "type": "integer"
+          },
+          "stockBasedCompensationTTM": {
+            "type": "integer"
+          },
+          "changeInWorkingCapitalTTM": {
+            "type": "integer"
+          },
+          "accountsReceivablesTTM": {
+            "type": "integer"
+          },
+          "inventoryTTM": {
+            "type": "integer"
+          },
+          "accountsPayablesTTM": {
+            "type": "integer"
+          },
+          "otherWorkingCapitalTTM": {
+            "type": "integer"
+          },
+          "otherNonCashItemsTTM": {
+            "type": "integer"
+          },
+          "netCashProvidedByOperatingActivitiesTTM": {
+            "type": "integer"
+          },
+          "investmentsInPropertyPlantAndEquipmentTTM": {
+            "type": "integer"
+          },
+          "acquisitionsNetTTM": {
+            "type": "integer"
+          },
+          "purchasesOfInvestmentsTTM": {
+            "type": "integer"
+          },
+          "salesMaturitiesOfInvestmentsTTM": {
+            "type": "integer"
+          },
+          "otherInvestingActivitesTTM": {
+            "type": "integer"
+          },
+          "netCashUsedForInvestingActivitesTTM": {
+            "type": "integer"
+          },
+          "debtRepaymentTTM": {
+            "type": "integer"
+          },
+          "commonStockIssuedTTM": {
+            "type": "integer"
+          },
+          "commonStockRepurchasedTTM": {
+            "type": "integer"
+          },
+          "dividendsPaidTTM": {
+            "type": "integer"
+          },
+          "otherFinancingActivitesTTM": {
+            "type": "integer"
+          },
+          "netCashUsedProvidedByFinancingActivitiesTTM": {
+            "type": "integer"
+          },
+          "effectOfForexChangesOnCashTTM": {
+            "type": "integer"
+          },
+          "netChangeInCashTTM": {
+            "type": "integer"
+          },
+          "cashAtEndOfPeriodTTM": {
+            "type": "integer"
+          },
+          "cashAtBeginningOfPeriodTTM": {
+            "type": "integer"
+          },
+          "operatingCashFlowTTM": {
+            "type": "integer"
+          },
+          "capitalExpenditureTTM": {
+            "type": "integer"
+          },
+          "freeCashFlowTTM": {
             "type": "integer"
           }
         }
@@ -3655,40 +4010,34 @@
       "Historical": {
         "type": "object",
         "properties": {
-          "unadjustedVolume": {
-            "type": "integer"
-          },
-          "changePercent": {
-            "type": "number"
-          },
-          "close": {
-            "type": "number"
-          },
-          "label": {
-            "type": "string"
-          },
-          "data": {
-            "type": "string"
-          },
-          "high": {
+          "low": {
             "type": "number"
           },
           "adjClose": {
             "type": "number"
           },
-          "change": {
+          "changePercent": {
             "type": "number"
           },
-          "changeOverTime": {
-            "type": "number"
-          },
-          "open": {
+          "high": {
             "type": "number"
           },
           "volume": {
             "type": "integer"
           },
+          "change": {
+            "type": "number"
+          },
+          "date": {
+            "type": "string"
+          },
+          "close": {
+            "type": "number"
+          },
           "vwap": {
+            "type": "number"
+          },
+          "open": {
             "type": "number"
           }
         }
@@ -3696,14 +4045,14 @@
       "DailyPrice": {
         "type": "object",
         "properties": {
+          "symbol": {
+            "type": "string"
+          },
           "historical": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Historical"
             }
-          },
-          "symbol": {
-            "type": "string"
           }
         }
       }
