@@ -1260,7 +1260,7 @@
           }
         },
         "summary": "Cash Flow",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- *ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A\n\nNotes.\n- ASX does not support quarterly reports",
+        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
         "tags": [
           "Cash Flow Statement"
         ]
@@ -1350,7 +1350,7 @@
             "$ref": "#/components/responses/DEFAULT_ERROR"
           }
         },
-        "summary": "Cash Flow",
+        "summary": "Cash Flow TTM",
         "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- *ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A\n\nNotes.\n- ASX does not support quarterly reports",
         "tags": [
           "Cash Flow Statement TTM"
@@ -2197,7 +2197,7 @@
         "summary": "Historical Daily Price",
         "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- OSE (Oslo Stock Exchange)",
         "tags": [
-          "Daily Historical Price"
+          "Historical Daily Price"
         ]
       },
       "parameters": [
@@ -2299,7 +2299,7 @@
       "description": "Regular shares a company has issued to the public that are available for investors to trade"
     },
     {
-      "name": "Daily Historical Price",
+      "name": "Historical Daily Price",
       "description": ""
     }
   ],
@@ -2309,7 +2309,7 @@
       "Symbol": {
         "type": "object",
         "properties": {
-          "symbol": {
+          "exchange": {
             "type": "string"
           },
           "name": {
@@ -2318,7 +2318,7 @@
           "price": {
             "type": "number"
           },
-          "exchange": {
+          "symbol": {
             "type": "string"
           }
         }
@@ -2326,6 +2326,10 @@
       "Error": {
         "type": "object",
         "properties": {
+          "errors": {
+            "type": "object",
+            "description": "Errors"
+          },
           "code": {
             "type": "integer",
             "description": "Error code"
@@ -2337,10 +2341,6 @@
           "message": {
             "type": "string",
             "description": "Error message"
-          },
-          "errors": {
-            "type": "object",
-            "description": "Errors"
           }
         }
       },
@@ -2451,50 +2451,47 @@
       "Quote": {
         "type": "object",
         "properties": {
-          "avgVolume": {
-            "type": "integer"
-          },
           "dayLow": {
-            "type": "number"
-          },
-          "changesPercentage": {
-            "type": "number"
-          },
-          "volume": {
-            "type": "integer"
-          },
-          "priceAvg200": {
-            "type": "number"
-          },
-          "yearHigh": {
-            "type": "number"
-          },
-          "marketCap": {
-            "type": "number"
-          },
-          "pe": {
-            "type": "number"
-          },
-          "eps": {
-            "type": "number"
-          },
-          "sharesOutstanding": {
-            "type": "integer"
-          },
-          "change": {
             "type": "number"
           },
           "yearLow": {
             "type": "number"
           },
+          "change": {
+            "type": "number"
+          },
+          "eps": {
+            "type": "number"
+          },
+          "yearHigh": {
+            "type": "number"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "pe": {
+            "type": "number"
+          },
+          "marketCap": {
+            "type": "number"
+          },
+          "volume": {
+            "type": "integer"
+          },
           "previousClose": {
+            "type": "number"
+          },
+          "changesPercentage": {
             "type": "number"
           },
           "price": {
             "type": "number"
           },
-          "priceAvg50": {
+          "priceAvg200": {
             "type": "number"
+          },
+          "avgVolume": {
+            "type": "integer"
           },
           "name": {
             "type": "string"
@@ -2502,20 +2499,23 @@
           "earningsAnnouncement": {
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "exchange": {
-            "type": "string"
+          "dayHigh": {
+            "type": "number"
           },
           "timestamp": {
+            "type": "integer"
+          },
+          "priceAvg50": {
+            "type": "number"
+          },
+          "sharesOutstanding": {
             "type": "integer"
           },
           "open": {
             "type": "number"
           },
-          "dayHigh": {
-            "type": "number"
+          "exchange": {
+            "type": "string"
           }
         }
       },
@@ -4010,26 +4010,23 @@
       "Historical": {
         "type": "object",
         "properties": {
-          "low": {
+          "changePercent": {
             "type": "number"
           },
           "adjClose": {
             "type": "number"
           },
-          "changePercent": {
-            "type": "number"
-          },
-          "high": {
-            "type": "number"
-          },
-          "volume": {
-            "type": "integer"
+          "date": {
+            "type": "string"
           },
           "change": {
             "type": "number"
           },
-          "date": {
-            "type": "string"
+          "low": {
+            "type": "number"
+          },
+          "open": {
+            "type": "number"
           },
           "close": {
             "type": "number"
@@ -4037,8 +4034,11 @@
           "vwap": {
             "type": "number"
           },
-          "open": {
+          "high": {
             "type": "number"
+          },
+          "volume": {
+            "type": "integer"
           }
         }
       },
