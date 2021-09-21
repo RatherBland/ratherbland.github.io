@@ -178,7 +178,7 @@
           }
         },
         "summary": "Profile",
-        "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot Supported.\n\n- OSE (Oslo Stock Exchange)",
+        "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n- SZSE (Shenzen Stock Exchange)\n- B3/BFMV (Brazilian Stock Exchange)\n\nNot Supported.\n\n- OSE (Oslo Stock Exchange)\n\n`/profile/all` to get profile for all available companies.",
         "tags": [
           "Company Profile"
         ]
@@ -2312,28 +2312,20 @@
           "exchange": {
             "type": "string"
           },
+          "symbol": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           },
           "price": {
             "type": "number"
-          },
-          "symbol": {
-            "type": "string"
           }
         }
       },
       "Error": {
         "type": "object",
         "properties": {
-          "errors": {
-            "type": "object",
-            "description": "Errors"
-          },
-          "code": {
-            "type": "integer",
-            "description": "Error code"
-          },
           "status": {
             "type": "string",
             "description": "Error name"
@@ -2341,6 +2333,14 @@
           "message": {
             "type": "string",
             "description": "Error message"
+          },
+          "errors": {
+            "type": "object",
+            "description": "Errors"
+          },
+          "code": {
+            "type": "integer",
+            "description": "Error code"
           }
         }
       },
@@ -2451,26 +2451,32 @@
       "Quote": {
         "type": "object",
         "properties": {
-          "dayLow": {
+          "open": {
             "type": "number"
           },
-          "yearLow": {
+          "dayHigh": {
             "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
           },
           "change": {
             "type": "number"
           },
-          "eps": {
+          "pe": {
             "type": "number"
+          },
+          "exchange": {
+            "type": "string"
           },
           "yearHigh": {
             "type": "number"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "pe": {
-            "type": "number"
+          "avgVolume": {
+            "type": "integer"
           },
           "marketCap": {
             "type": "number"
@@ -2478,44 +2484,38 @@
           "volume": {
             "type": "integer"
           },
-          "previousClose": {
-            "type": "number"
-          },
-          "changesPercentage": {
-            "type": "number"
-          },
-          "price": {
-            "type": "number"
-          },
-          "priceAvg200": {
-            "type": "number"
-          },
-          "avgVolume": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "earningsAnnouncement": {
-            "type": "string"
-          },
-          "dayHigh": {
-            "type": "number"
-          },
-          "timestamp": {
-            "type": "integer"
-          },
-          "priceAvg50": {
+          "eps": {
             "type": "number"
           },
           "sharesOutstanding": {
             "type": "integer"
           },
-          "open": {
+          "symbol": {
+            "type": "string"
+          },
+          "yearLow": {
             "type": "number"
           },
-          "exchange": {
+          "priceAvg50": {
+            "type": "number"
+          },
+          "previousClose": {
+            "type": "number"
+          },
+          "timestamp": {
+            "type": "integer"
+          },
+          "priceAvg200": {
+            "type": "number"
+          },
+          "earningsAnnouncement": {
             "type": "string"
+          },
+          "changesPercentage": {
+            "type": "number"
+          },
+          "dayLow": {
+            "type": "number"
           }
         }
       },
@@ -2614,6 +2614,9 @@
             "type": "integer"
           },
           "hedgeFunds": {
+            "type": "integer"
+          },
+          "sovereignWealthFunds": {
             "type": "integer"
           }
         }
@@ -2763,12 +2766,6 @@
             "type": "string"
           },
           "reportedCurrency": {
-            "type": "string"
-          },
-          "fillingDate": {
-            "type": "string"
-          },
-          "acceptedDate": {
             "type": "string"
           },
           "period": {
@@ -4010,35 +4007,35 @@
       "Historical": {
         "type": "object",
         "properties": {
-          "changePercent": {
+          "close": {
             "type": "number"
-          },
-          "adjClose": {
-            "type": "number"
-          },
-          "date": {
-            "type": "string"
           },
           "change": {
             "type": "number"
           },
-          "low": {
+          "volume": {
+            "type": "integer"
+          },
+          "high": {
             "type": "number"
           },
-          "open": {
-            "type": "number"
-          },
-          "close": {
+          "changePercent": {
             "type": "number"
           },
           "vwap": {
             "type": "number"
           },
-          "high": {
+          "open": {
             "type": "number"
           },
-          "volume": {
-            "type": "integer"
+          "low": {
+            "type": "number"
+          },
+          "date": {
+            "type": "string"
+          },
+          "adjClose": {
+            "type": "number"
           }
         }
       },
