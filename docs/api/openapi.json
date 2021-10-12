@@ -20,6 +20,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -111,6 +112,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -178,7 +180,7 @@
           }
         },
         "summary": "Profile",
-        "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot Supported.\n\n- OSE (Oslo Stock Exchange)\n\n`/profile/all` to get profile for all available companies.",
+        "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot Supported.\n\n- OSE (Oslo Stock Exchange)\n\n`/profile/all-symbols` to get profile for all available companies.",
         "tags": [
           "Company Profile"
         ]
@@ -189,7 +191,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -202,6 +204,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -258,7 +261,7 @@
           }
         },
         "summary": "Quote",
-        "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- OSE (Oslo Stock Exchange)\n\n\\---\n\n`/quote/all` to get quotes for all available companies*\n\n*ASX companies not available in `/quote/all`, will be added in future update.\n\n\\---\n\nReturn quotes for all companies in exchange e.g. `/quote/nyse`\n\nSupported exchanges/keywords are as follows.\nXETRA, NSE, LSE, MCX, SIX, HKSE, OSE, NYSE, NASDAQ, AMEX, EURONEXT, INDEX, TSX, COMMODITY, MUTUAL_FUND, ETF",
+        "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- OSE (Oslo Stock Exchange)\n\n<hr>\n\n`/quote/all-symbols` to get quotes for all available companies*\n\n*ASX companies not available in `/quote/all-symbols`, will be added in future update.\n\n<hr>",
         "tags": [
           "Company Quote"
         ]
@@ -269,7 +272,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -290,6 +293,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -393,7 +397,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -414,6 +418,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -467,7 +472,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -480,6 +485,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -535,7 +541,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -548,6 +554,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -681,7 +688,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -694,6 +701,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -782,7 +790,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -795,6 +803,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -819,50 +828,27 @@
                 },
                 "example": [
                   {
-                    "symbol": "GOOG",
+                    "symbol": "AAPL",
                     "reportedCurrency": "USD",
-                    "period": "2021 Q2",
-                    "revenueTTM": 220265000000,
-                    "costOfRevenueTTM": 97527000000,
-                    "grossProfitTTM": 122738000000,
-                    "researchAndDevelopmentExpensesTTM": 29038000000,
-                    "generalAndAdministrativeExpensesTTM": 11701000000,
-                    "sellingAndMarketingExpensesTTM": 19337000000,
-                    "sellingGeneralAndAdministrativeExpensesTTM": 31038000000,
+                    "period": "TTM",
+                    "revenueTTM": 347155000000,
+                    "costOfRevenueTTM": 204804000000,
+                    "grossProfitTTM": 142351000000,
+                    "researchAndDevelopmentExpensesTTM": 21120000000,
+                    "generalAndAdministrativeExpensesTTM": 4936000000,
+                    "sellingAndMarketingExpensesTTM": 0,
+                    "sellingGeneralAndAdministrativeExpensesTTM": 21293000000,
                     "otherExpensesTTM": 0,
-                    "operatingExpensesTTM": 60076000000,
-                    "costAndExpensesTTM": 157603000000,
-                    "interestExpenseTTM": 253000000,
-                    "depreciationAndAmortizationTTM": 12901000000,
-                    "ebitdaTTM": 88470000000,
-                    "operatingIncomeTTM": 62662000000,
-                    "totalOtherIncomeExpensesNetTTM": -12654000000,
-                    "incomeBeforeTaxTTM": 75316000000,
-                    "incomeTaxExpenseTTM": 12387000000,
-                    "netIncomeTTM": 62929000000
-                  },
-                  {
-                    "symbol": "GOOG",
-                    "reportedCurrency": "USD",
-                    "period": "2021 Q1",
-                    "revenueTTM": 196682000000,
-                    "costOfRevenueTTM": 89853000000,
-                    "grossProfitTTM": 106829000000,
-                    "researchAndDevelopmentExpensesTTM": 28238000000,
-                    "generalAndAdministrativeExpensesTTM": 10945000000,
-                    "sellingAndMarketingExpensesTTM": 17962000000,
-                    "sellingGeneralAndAdministrativeExpensesTTM": 28907000000,
-                    "otherExpensesTTM": 0,
-                    "operatingExpensesTTM": 57145000000,
-                    "costAndExpensesTTM": 146998000000,
-                    "interestExpenseTTM": 190000000,
-                    "depreciationAndAmortizationTTM": 13342000000,
-                    "ebitdaTTM": 75140000000,
-                    "operatingIncomeTTM": 49684000000,
-                    "totalOtherIncomeExpensesNetTTM": -11924000000,
-                    "incomeBeforeTaxTTM": 61608000000,
-                    "incomeTaxExpenseTTM": 10245000000,
-                    "netIncomeTTM": 51363000000
+                    "operatingExpensesTTM": 42413000000,
+                    "costAndExpensesTTM": 247217000000,
+                    "interestExpenseTTM": 2607000000,
+                    "depreciationAndAmortizationTTM": 10997000000,
+                    "ebitdaTTM": 114464000000,
+                    "operatingIncomeTTM": 99938000000,
+                    "totalOtherIncomeExpensesNetTTM": -922000000,
+                    "incomeBeforeTaxTTM": 100860000000,
+                    "incomeTaxExpenseTTM": 14058000000,
+                    "netIncomeTTM": 86802000000
                   }
                 ]
               }
@@ -884,7 +870,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -897,6 +883,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -971,7 +958,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -984,6 +971,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -1087,7 +1075,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -1100,6 +1088,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -1187,7 +1176,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -1200,6 +1189,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -1294,7 +1284,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -1307,6 +1297,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -1331,74 +1322,39 @@
                 },
                 "example": [
                   {
-                    "symbol": "GOOG",
+                    "symbol": "AAPL",
                     "reportedCurrency": "USD",
-                    "period": "2021 Q2",
-                    "netIncomeTTM": 62929000000,
-                    "depreciationAndAmortizationTTM": 12901000000,
-                    "deferredIncomeTaxTTM": 3285000000,
-                    "stockBasedCompensationTTM": 13966000000,
-                    "changeInWorkingCapitalTTM": 354000000,
-                    "accountsReceivablesTTM": -9913000000,
-                    "inventoryTTM": 0,
-                    "accountsPayablesTTM": 271000000,
-                    "otherWorkingCapitalTTM": 995000000,
-                    "otherNonCashItemsTTM": 335000000,
-                    "netCashProvidedByOperatingActivitiesTTM": 80859000000,
-                    "investmentsInPropertyPlantAndEquipmentTTM": -22323000000,
-                    "acquisitionsNetTTM": -2357000000,
-                    "purchasesOfInvestmentsTTM": -140350000000,
-                    "salesMaturitiesOfInvestmentsTTM": 128505000000,
-                    "otherInvestingActivitesTTM": -410000000,
-                    "netCashUsedForInvestingActivitesTTM": -36935000000,
-                    "debtRepaymentTTM": -8796000000,
-                    "commonStockIssuedTTM": 0,
-                    "commonStockRepurchasedTTM": -39992000000,
-                    "dividendsPaidTTM": 0,
-                    "otherFinancingActivitesTTM": 10467000000,
-                    "netCashUsedProvidedByFinancingActivitiesTTM": -38321000000,
-                    "effectOfForexChangesOnCashTTM": 285000000,
-                    "netChangeInCashTTM": 5888000000,
-                    "cashAtEndOfPeriodTTM": 96846000000,
-                    "cashAtBeginningOfPeriodTTM": 90958000000,
-                    "operatingCashFlowTTM": 80859000000,
-                    "capitalExpenditureTTM": -22323000000,
-                    "freeCashFlowTTM": 58536000000
-                  },
-                  {
-                    "symbol": "GOOG",
-                    "reportedCurrency": "USD",
-                    "period": "2021 Q1",
-                    "netIncomeTTM": 51363000000,
-                    "depreciationAndAmortizationTTM": 13342000000,
-                    "deferredIncomeTaxTTM": 2315000000,
-                    "stockBasedCompensationTTM": 13545000000,
-                    "changeInWorkingCapitalTTM": 3552000000,
-                    "accountsReceivablesTTM": -6332000000,
-                    "inventoryTTM": 0,
-                    "accountsPayablesTTM": 547000000,
-                    "otherWorkingCapitalTTM": 2974000000,
-                    "otherNonCashItemsTTM": 2255000000,
-                    "netCashProvidedByOperatingActivitiesTTM": 72962000000,
-                    "investmentsInPropertyPlantAndEquipmentTTM": -22218000000,
-                    "acquisitionsNetTTM": -2214000000,
-                    "purchasesOfInvestmentsTTM": -149540000000,
-                    "salesMaturitiesOfInvestmentsTTM": 131125000000,
-                    "otherInvestingActivitesTTM": 6538000000,
-                    "netCashUsedForInvestingActivitesTTM": -36309000000,
-                    "debtRepaymentTTM": -1090000000,
-                    "commonStockIssuedTTM": 0,
-                    "commonStockRepurchasedTTM": -34048000000,
-                    "dividendsPaidTTM": 0,
-                    "otherFinancingActivitesTTM": 5310000000,
-                    "netCashUsedProvidedByFinancingActivitiesTTM": -29828000000,
-                    "effectOfForexChangesOnCashTTM": 153000000,
-                    "netChangeInCashTTM": 6978000000,
-                    "cashAtEndOfPeriodTTM": 90958000000,
-                    "cashAtBeginningOfPeriodTTM": 83980000000,
-                    "operatingCashFlowTTM": 72962000000,
-                    "capitalExpenditureTTM": -22218000000,
-                    "freeCashFlowTTM": 50744000000
+                    "period": "TTM",
+                    "netIncomeTTM": 86802000000,
+                    "depreciationAndAmortizationTTM": 10997000000,
+                    "deferredIncomeTaxTTM": -1134000000,
+                    "stockBasedCompensationTTM": 7685000000,
+                    "changeInWorkingCapitalTTM": 756000000,
+                    "accountsReceivablesTTM": 452000000,
+                    "inventoryTTM": -1350000000,
+                    "accountsPayablesTTM": 4939000000,
+                    "otherWorkingCapitalTTM": 2170000000,
+                    "otherNonCashItemsTTM": -692000000,
+                    "netCashProvidedByOperatingActivitiesTTM": 104414000000,
+                    "investmentsInPropertyPlantAndEquipmentTTM": -9646000000,
+                    "acquisitionsNetTTM": -64000000,
+                    "purchasesOfInvestmentsTTM": -112384000000,
+                    "salesMaturitiesOfInvestmentsTTM": 112425000000,
+                    "otherInvestingActivitesTTM": -180000000,
+                    "netCashUsedForInvestingActivitesTTM": -9849000000,
+                    "debtRepaymentTTM": -7500000000,
+                    "commonStockIssuedTTM": 1011000000,
+                    "commonStockRepurchasedTTM": -83410000000,
+                    "dividendsPaidTTM": -14338000000,
+                    "otherFinancingActivitesTTM": 9909000000,
+                    "netCashUsedProvidedByFinancingActivitiesTTM": -94328000000,
+                    "effectOfForexChangesOnCashTTM": 0,
+                    "netChangeInCashTTM": 237000000,
+                    "cashAtEndOfPeriodTTM": 152790000000,
+                    "cashAtBeginningOfPeriodTTM": 152553000000,
+                    "operatingCashFlowTTM": 104414000000,
+                    "capitalExpenditureTTM": -9646000000,
+                    "freeCashFlowTTM": 94768000000
                   }
                 ]
               }
@@ -1420,7 +1376,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -1433,6 +1389,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -1511,7 +1468,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -1524,6 +1481,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -1814,7 +1772,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -1827,6 +1785,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -1901,7 +1860,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -1914,6 +1873,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -2030,7 +1990,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -2043,6 +2003,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -2110,7 +2071,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -2123,6 +2084,7 @@
             "in": "query",
             "name": "format",
             "required": false,
+            "description": "Response format. Defaults to JSON",
             "schema": {
               "type": "string",
               "enum": [
@@ -2174,7 +2136,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -2264,7 +2226,7 @@
           "name": "tickers",
           "required": true,
           "schema": {
-            "type": "DelimetedList",
+            "type": "string",
             "description": "Individual or comma separated tickers"
           }
         }
@@ -2367,21 +2329,21 @@
       "Error": {
         "type": "object",
         "properties": {
-          "code": {
-            "type": "integer",
-            "description": "Error code"
+          "errors": {
+            "type": "object",
+            "description": "Errors"
           },
           "message": {
             "type": "string",
             "description": "Error message"
           },
-          "errors": {
-            "type": "object",
-            "description": "Errors"
-          },
           "status": {
             "type": "string",
             "description": "Error name"
+          },
+          "code": {
+            "type": "integer",
+            "description": "Error code"
           }
         }
       },
@@ -2414,14 +2376,14 @@
       "Symbol": {
         "type": "object",
         "properties": {
-          "price": {
-            "type": "number"
+          "symbol": {
+            "type": "string"
           },
           "name": {
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
+          "price": {
+            "type": "number"
           },
           "exchange": {
             "type": "string"
@@ -4097,34 +4059,34 @@
       "Historical": {
         "type": "object",
         "properties": {
-          "date": {
-            "type": "string"
+          "volume": {
+            "type": "integer"
           },
-          "high": {
-            "type": "number"
-          },
-          "vwap": {
-            "type": "number"
-          },
-          "change": {
+          "changePercent": {
             "type": "number"
           },
           "open": {
             "type": "number"
           },
-          "changePercent": {
+          "change": {
             "type": "number"
           },
-          "close": {
-            "type": "number"
+          "date": {
+            "type": "string"
           },
           "adjClose": {
             "type": "number"
           },
-          "volume": {
-            "type": "integer"
+          "vwap": {
+            "type": "number"
           },
           "low": {
+            "type": "number"
+          },
+          "high": {
+            "type": "number"
+          },
+          "close": {
             "type": "number"
           }
         }
