@@ -55,6 +55,21 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
+
+        .console-container {
+            display:block;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+        }
+        .console-underscore {
+            display:inline-block;
+            position:relative;
+            top:-0.14em;
+            left:10px;
+        }
+
     </style>
 </head>
 <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
@@ -125,8 +140,12 @@
         <!--Left Col-->
         <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
             <p class="uppercase tracking-loose w-full">What are you?</p>
-            <h1 class="my-4 text-5xl font-bold leading-tight">
-                The financial data platform built for humans.
+<!--            <h1 class="my-4 text-5xl font-bold leading-tight">-->
+<!--                The financial data platform built for <span id="cycle" class="font-bold">You.</span>-->
+<!--            </h1>-->
+            <h1 class="my-4 text-5xl font-bold leading-tight inline-block console-container">
+                The financial data platform built for <span id='text'></span><span class='console-underscore' id='console'>&#95;</span>
+
             </h1>
             <p class="leading-normal text-2xl mb-8">
                 Access 40+ years of world-class raw financial data from more than 30k companies across the globe.
@@ -251,7 +270,6 @@
                             <li>NASDAQ</li>
                             <li>New York Stock Exchange (NYSE)</li>
                             <li>Toronto Stock Exchange (TSX)</li>
-                            <li>Brazilian Stock Exchange (B3)</li>
                             <br/>
                         </ul>
                         <ul class="list-disc list-inside">
@@ -260,7 +278,6 @@
                             <li>Australian Stock Exchange (ASX)</li>
                             <li>Hong Kong Stock Exchange (HKEX)</li>
                             <li>National Indian Stock Exchange (NSEI)</li>
-                            <li>Shenzen Stock Exchange (SZSE)</li>
                             <br/>
                         </ul>
                         <ul class="list-disc list-inside">
@@ -286,6 +303,35 @@
         <img src="images/various_people.png" alt="">
     </div>
 
+</section>
+<section class="bg-white border-b py-8">
+    <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+        <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+            Testimonials
+        </h1>
+        <div class="w-full mb-4">
+            <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+        </div>
+        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+            <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow w-1/3 m-auto">
+                <div class="grid grid-cols-2 p-6">
+                    <div class="">
+                        <img src="/images/warner.jpg" alt="" class="rounded-full h-24 w-24">
+                    </div>
+                    <div class="text-gray-800">
+                        <div class="text-xl">
+                            Warner Lin
+                        </div>
+                        <div>https://ezdcf.net/</div>
+                    </div>
+                    </div>
+                    <p class="text-gray-800 text-base px-6 mb-5">
+                        "Quantel is a joy to use! I’m more than satisfied relying on it to feed financial data to my app! It’s reliable and its API endpoints are easy to implement. Support is absolutely top-notch!"
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="bg-gray-100 py-8">
     <div class="container mx-auto px-2 pt-4 pb-12 text-gray-800">
@@ -472,11 +518,62 @@
             </div>
         </div>
     </div>
-    <a href="https://www.freepik.com/free-photos-vectors/background" class="text-gray-500">Background vector created by
-        freepik - www.freepik.com</a> |
-    <a href="https://www.freepik.com/vectorjuice/" class="text-gray-500">Artwork provided by @vectorjuice via
-        freepik</a>
 </footer>
+<script>
+    // text cycling
+
+    consoleText(["developers", "investors", "analysts", "you"], 'text',['white','white','white', 'white']);
+
+    function consoleText(words, id, colors) {
+        if (colors === undefined) colors = ['#fff'];
+        var visible = true;
+        var con = document.getElementById('console');
+        var letterCount = 1;
+        var x = 1;
+        var waiting = false;
+        var target = document.getElementById(id)
+        target.setAttribute('style', 'color:' + colors[0])
+        window.setInterval(function() {
+
+            if (letterCount === 0 && waiting === false) {
+                waiting = true;
+                target.innerHTML = words[0].substring(0, letterCount)
+                window.setTimeout(function() {
+                    var usedColor = colors.shift();
+                    colors.push(usedColor);
+                    var usedWord = words.shift();
+                    words.push(usedWord);
+                    x = 1;
+                    target.setAttribute('style', 'color:' + colors[0])
+                    letterCount += x;
+                    waiting = false;
+                }, 1000)
+            } else if (letterCount === words[0].length + 1 && waiting === false) {
+                waiting = true;
+                window.setTimeout(function() {
+                    x = -1;
+                    letterCount += x;
+                    waiting = false;
+                }, 1000)
+            } else if (waiting === false) {
+                target.innerHTML = words[0].substring(0, letterCount)
+                letterCount += x;
+            }
+        }, 120)
+        window.setInterval(function() {
+            if (visible === true) {
+                con.className = 'console-underscore hidden'
+                visible = false;
+
+            } else {
+                con.className = 'console-underscore'
+
+                visible = true;
+            }
+        }, 400)
+    }
+</script>
+
 <script>
     var scrollpos = window.scrollY;
     var header = document.getElementById("header");
