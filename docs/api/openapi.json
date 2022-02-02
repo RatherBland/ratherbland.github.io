@@ -13,100 +13,6 @@
     }
   ],
   "paths": {
-    "/profile/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Profile"
-                  }
-                },
-                "example": [
-                  {
-                    "address": "1600 Amphitheatre Pkwy",
-                    "beta": 1.07171,
-                    "ceo": "Mr. Sundar Pichai",
-                    "changes": 7.01,
-                    "cik": "0001652044",
-                    "city": "Mountain View",
-                    "companyName": "Alphabet Inc",
-                    "country": "US",
-                    "currency": "USD",
-                    "cusip": "02079K305",
-                    "dcf": 1638.51,
-                    "dcfDiff": 344.37,
-                    "defaultImage": false,
-                    "description": "Alphabet Inc. provides online advertising services in the United States, Europe, the Middle East, Africa, the Asia-Pacific, Canada, and Latin America. It offers performance and brand advertising services. The company operates through Google and Other Bets segments. The Google segment offers products, such as Ads, Android, Chrome, Google Cloud, Google Maps, Google Play, Hardware, Search, and YouTube, as well as technical infrastructure. It also offers digital content, cloud services, hardware devices, and other miscellaneous products and services. The Other Bets segment includes businesses, including Access, Calico, CapitalG, GV, Verily, Waymo, and X, as well as Internet and television services. The company has an agreement with Sabre Corporation to develop an artificial intelligence-driven technology platform for travel. Alphabet Inc. was founded in 1998 and is headquartered in Mountain View, California.",
-                    "exchange": "Nasdaq Global Select",
-                    "exchangeShortName": "NASDAQ",
-                    "fullTimeEmployees": "132121",
-                    "industry": "Internet Content & Information",
-                    "ipoDate": "2004-08-19",
-                    "isActivelyTrading": true,
-                    "isEtf": false,
-                    "isin": "US02079K3059",
-                    "lastDiv": 0.0,
-                    "mktCap": 1548541755392,
-                    "phone": "16502530000",
-                    "price": 2289.76,
-                    "range": "1205.0-2304.085",
-                    "sector": "Communication Services",
-                    "state": "CALIFORNIA",
-                    "symbol": "GOOG",
-                    "volAvg": 1794435,
-                    "website": "https://abc.xyz/",
-                    "zip": "94043"
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Profile",
-        "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot Supported.\n\n- OSE (Oslo Stock Exchange)\n\n`/profile/all-symbols` to get profile for all available companies.\n\nIf speed is key, consider using `format=csv` to return bulk quotes as CSV. CSV responses are much smaller as there is no key replication.",
-        "tags": [
-          "Company Profile"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
     "/quote/{tickers}": {
       "get": {
         "parameters": [
@@ -173,7 +79,7 @@
           }
         },
         "summary": "Stock & Crypto Quotes",
-        "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- OSE (Oslo Stock Exchange)\n\n<hr>\n\n`/quote/all-symbols` to get quotes for all available companies*\n\n*ASX companies not available in `/quote/all-symbols`, will be added in future update.\n\n`/quote/all-crypto` to get bulk crypto quotes.\n\nIf speed is key, consider using `format=csv` to return bulk quotes as CSV. CSV responses are much smaller as there is no key replication.",
+        "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- OSE (Oslo Stock Exchange)\n\n\n`/quote/all-crypto` to get bulk crypto quotes.\n\nIf speed is key, consider using `format=csv` to return bulk quotes as CSV. CSV responses are much smaller as there is no key replication.",
         "tags": [
           "Stock & Crypto Quotes"
         ]
@@ -197,7 +103,7 @@
             "in": "query",
             "name": "query",
             "required": false,
-            "description": "Stock/Crypto symbol or equity name to search for.",
+            "description": "Stock/Crypto symbol or equity name to search for. I.E 'AAPL' & 'Apple' are both valid searches for 'Apple Inc.'",
             "schema": {
               "type": "string",
               "default": ""
@@ -987,7 +893,8 @@
                     "stateOrGovernment": 250254,
                     "employeeShareScheme": 0,
                     "firmsVCPE": 0,
-                    "hedgeFunds": 0
+                    "hedgeFunds": 0,
+                    "companyControlledFoundation": 0
                   }
                 ]
               }
@@ -1001,155 +908,6 @@
         "description": "Exchanges supported\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
         "tags": [
           "Share Ownership"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
-    "/key-executives/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/KeyExec"
-                  }
-                },
-                "example": [
-                  {
-                    "title": "SVice President & Head of Client and Agency - Hotstar",
-                    "name": "Gulshan  Verma",
-                    "pay": null,
-                    "currencyPay": "USD",
-                    "gender": "",
-                    "yearBorn": null,
-                    "titleSince": null
-                  },
-                  {
-                    "title": "Head of Google X",
-                    "name": "Dr. Astro  Teller",
-                    "pay": null,
-                    "currencyPay": "USD",
-                    "gender": "",
-                    "yearBorn": null,
-                    "titleSince": null
-                  },
-                  {
-                    "title": "Head of Project Aura and Vice President",
-                    "name": "Ms. Ivy  Ross",
-                    "pay": null,
-                    "currencyPay": "USD",
-                    "gender": "female",
-                    "yearBorn": null,
-                    "titleSince": null
-                  },
-                  {
-                    "title": "Vice President of Investor Relations",
-                    "name": "Ms. Ellen  West",
-                    "pay": null,
-                    "currencyPay": "USD",
-                    "gender": "female",
-                    "yearBorn": null,
-                    "titleSince": null
-                  },
-                  {
-                    "title": "Chief Accounting Officer & Vice President",
-                    "name": "Ms. Amie Thuener O'Toole",
-                    "pay": null,
-                    "currencyPay": "USD",
-                    "gender": "female",
-                    "yearBorn": null,
-                    "titleSince": null
-                  },
-                  {
-                    "title": "Technical Advisor",
-                    "name": "Dr. Eric E. Schmidt",
-                    "pay": 3410000,
-                    "currencyPay": "USD",
-                    "gender": "",
-                    "yearBorn": 1956,
-                    "titleSince": null
-                  },
-                  {
-                    "title": "Senior Vice President & Chief Financial Officer",
-                    "name": "Ms. Ruth M. Porat",
-                    "pay": 664050,
-                    "currencyPay": "USD",
-                    "gender": "female",
-                    "yearBorn": 1958,
-                    "titleSince": null
-                  },
-                  {
-                    "title": "Co-Founder & Director",
-                    "name": "Mr. Sergey  Brin",
-                    "pay": 1,
-                    "currencyPay": "USD",
-                    "gender": "male",
-                    "yearBorn": 1974,
-                    "titleSince": null
-                  },
-                  {
-                    "title": "Co-Founder & Director",
-                    "name": "Mr. Lawrence Edward Page",
-                    "pay": 1,
-                    "currencyPay": "USD",
-                    "gender": "male",
-                    "yearBorn": 1973,
-                    "titleSince": null
-                  },
-                  {
-                    "title": "Chief Executive Officer & Director",
-                    "name": "Mr. Sundar  Pichai",
-                    "pay": 4010000,
-                    "currencyPay": "USD",
-                    "gender": "male",
-                    "yearBorn": 1973,
-                    "titleSince": null
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Executives",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
-        "tags": [
-          "Key Executives"
         ]
       },
       "parameters": [
@@ -1373,96 +1131,6 @@
         }
       ]
     },
-    "/income-statement-growth/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/IncomeStatementGrowth"
-                  }
-                },
-                "example": [
-                  {
-                    "date": "2020-12-31",
-                    "growthCostAndExpenses": 0.10716468431197405,
-                    "growthCostOfRevenue": 0.17853566262378992,
-                    "growthDepreciationAndAmortization": 0.09540786011374247,
-                    "growthEBITDA": 0.05092610569642372,
-                    "growthEBITDARatio": -0.06808397166023077,
-                    "growthEPS": 0.20314448884977548,
-                    "growthEPSDiluted": 0.20314448884977548,
-                    "growthGeneralAndAdministrativeExpenses": -0.6054970551490273,
-                    "growthGrossProfit": 0.08708218005580196,
-                    "growthGrossProfitRatio": -0.03602208137372102,
-                    "growthIncomeBeforeTax": 0.21342586750788645,
-                    "growthIncomeBeforeTaxRatio": 0.07601266823806133,
-                    "growthIncomeTaxExpense": 0.4791745550927679,
-                    "growthInterestExpense": -1,
-                    "growthNetIncome": 0.1725533587630667,
-                    "growthNetIncomeRatio": 0.03976989084698905,
-                    "growthOperatingExpenses": 0.04697129531952696,
-                    "growthOperatingIncome": 0.20428851041453652,
-                    "growthOperatingIncomeRatio": 0.06791141788760637,
-                    "growthOtherExpenses": 0.271412680756396,
-                    "growthResearchAndDevelopmentExpenses": 0.059766315627642404,
-                    "growthRevenue": 0.12770532012826136,
-                    "growthSellingAndMarketingExpenses": -0.028054592720970536,
-                    "growthTotalOtherIncomeExpensesNet": -87.81012658227849,
-                    "growthWeightedAverageShsOut": -0.025425892841805096,
-                    "growthWeightedAverageShsOutDil": -0.025425892841805096,
-                    "period": "Q4",
-                    "symbol": "GOOG"
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Income Growth",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
-        "tags": [
-          "Income Statement Growth"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
     "/balance-sheet-statement/{tickers}": {
       "get": {
         "parameters": [
@@ -1568,109 +1236,6 @@
         "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- *ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A\n\nNotes.\n- ASX does not support quarterly reports",
         "tags": [
           "Balance Sheet"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
-    "/balance-sheet-statement-growth/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/BalanceSheetGrowth"
-                  }
-                },
-                "example": [
-                  {
-                    "date": "2020-12-31",
-                    "symbol": "NESN.SW",
-                    "period": "FY",
-                    "growthCashAndCashEquivalents": -0.29910295889677335,
-                    "growthShortTermInvestments": 0.20758768790264853,
-                    "growthCashAndShortTermInvestments": -0.16116145376595536,
-                    "growthNetReceivables": 0,
-                    "growthInventory": 0.0811302579471262,
-                    "growthOtherCurrentAssets": 0,
-                    "growthTotalCurrentAssets": -0.04472422398564339,
-                    "growthPropertyPlantEquipmentNet": -0.10159237883318267,
-                    "growthGoodwill": -0.044158361018826135,
-                    "growthIntangibleAssets": 0.13038599640933574,
-                    "growthGoodwillAndIntangibleAssets": 0.02243150684931507,
-                    "growthLongTermInvestments": 0.0434593654932638,
-                    "growthTaxAssets": -0.39214758751182593,
-                    "growthOtherNonCurrentAssets": 0,
-                    "growthTotalNonCurrentAssets": -0.025109182136393685,
-                    "growthOtherAssets": 0,
-                    "growthTotalAssets": -0.030576832890417384,
-                    "growthAccountPayables": -0.015338517514446743,
-                    "growthShortTermDebt": 4.022190408017179,
-                    "growthTaxPayables": 0,
-                    "growthDeferredRevenue": 0,
-                    "growthOtherCurrentLiabilities": 0,
-                    "growthTotalCurrentLiabilities": -0.04548840562297249,
-                    "growthLongTermDebt": -1,
-                    "growthDeferredRevenueNonCurrent": 0,
-                    "growthDeferrredTaxLiabilitiesNonCurrent": 0.018153727307840865,
-                    "growthOtherNonCurrentLiabilities": 0,
-                    "growthTotalNonCurrentLiabilities": 0.1293667632907988,
-                    "growthOtherLiabilities": 0,
-                    "growthTotalLiabilities": 0.032446255893870374,
-                    "growthCommonStock": -0.03355704697986577,
-                    "growthRetainedEarnings": -0.07522273055622442,
-                    "growthAccumulatedOtherComprehensiveIncomeLoss": -0.11701500360348556,
-                    "growthOthertotalStockholdersEquity": 0,
-                    "growthTotalStockholdersEquity": -0.12184106851157875,
-                    "growthTotalLiabilitiesAndStockholdersEquity": -0.030712830316332713,
-                    "growthTotalInvestments": 0.0755297573256871,
-                    "growthTotalDebt": 0.5408084548329862,
-                    "growthNetDebt": 0.8806956710191255
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Balance Sheet Growth",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
-        "tags": [
-          "Balance Sheet Growth"
         ]
       },
       "parameters": [
@@ -1924,778 +1489,6 @@
         }
       ]
     },
-    "/cash-flow-statement-growth/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CashflowGrowth"
-                  }
-                },
-                "example": [
-                  {
-                    "date": "2020-12-31",
-                    "symbol": "SHOP.TO",
-                    "period": "FY",
-                    "growthNetIncome": -3.559306964002499,
-                    "growthDepreciationAndAmortization": 0.9651622675380774,
-                    "growthDeferredIncomeTax": 0.10760061184661639,
-                    "growthStockBasedCompensation": 0.5584136921290452,
-                    "growthChangeInWorkingCapital": -5.973085501858736,
-                    "growthAccountsReceivables": 0.08800386526780785,
-                    "growthInventory": 0,
-                    "growthAccountsPayables": 0,
-                    "growthOtherWorkingCapital": -1.8373062942414387,
-                    "growthOtherNonCashItems": 0,
-                    "growthNetCashProvidedByOperatingActivites": 5.017956524817674,
-                    "growthInvestmentsInPropertyPlantAndEquipment": -0.2647333462534576,
-                    "growthAcquisitionsNet": 0,
-                    "growthPurchasesOfInvestments": 1.0599568749255133,
-                    "growthSalesMaturitiesOfInvestments": 0.5023608842496562,
-                    "growthOtherInvestingActivites": 0,
-                    "growthNetCashUsedForInvestingActivites": 2.3923315334299136,
-                    "growthDebtRepayment": 0,
-                    "growthCommonStockIssued": 2.7478757699697973,
-                    "growthCommonStockRepurchased": 0,
-                    "growthDividendsPaid": 0,
-                    "growthOtherFinancingActivites": 0,
-                    "growthNetCashUsedProvidedByFinancingActivities": 3.8310520390411638,
-                    "growthEffectOfForexChangesOnCash": 0.8490241102181401,
-                    "growthNetChangeInCash": 7.584438601697927,
-                    "growthCashAtEndOfPeriod": 3.1599175893500084,
-                    "growthCashAtBeginningOfPeriod": 0.5825247210135311,
-                    "growthOperatingCashFlow": 5.017956524817674,
-                    "growthCapitalExpenditure": -0.32697084795743386,
-                    "growthFreeCashFlow": 45.600511073253834
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Cash Flow Growth",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
-        "tags": [
-          "Cash Flow Statement Growth"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
-    "/ratios/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          },
-          {
-            "in": "query",
-            "name": "period",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "quarter"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/FinancialRatios"
-                  }
-                },
-                "example": [
-                  {
-                    "symbol": "DHER.DE",
-                    "date": "2020-12-31",
-                    "period": "FY",
-                    "currentRatio": 3.342676944639103,
-                    "quickRatio": 2.9254179597557313,
-                    "cashRatio": 2.9254179597557313,
-                    "daysOfSalesOutstanding": 0,
-                    "daysOfInventoryOutstanding": 6.662537290792335,
-                    "operatingCycle": 6.662537290792335,
-                    "daysOfPayablesOutstanding": 17.828285382009405,
-                    "cashConversionCycle": -11.16574809121707,
-                    "grossProfitMargin": 0.19989481349623756,
-                    "operatingProfitMargin": -0.2610243547212558,
-                    "pretaxProfitMargin": -0.5617363864390322,
-                    "netProfitMargin": -0.5682498584027834,
-                    "effectiveTaxRate": -0.0102268635217861,
-                    "returnOnAssets": -0.24325026410127634,
-                    "returnOnEquity": -1.202156795617939,
-                    "returnOnCapitalEmployed": -0.13510910080830926,
-                    "netIncomePerEBT": 1.0115952466690674,
-                    "ebtPerEbit": 2.152045877247365,
-                    "ebitPerRevenue": -0.2610243547212558,
-                    "debtRatio": 0.7976551270283844,
-                    "debtEquityRatio": 3.942057514549812,
-                    "longTermDebtToCapitalization": 0.7162631438354501,
-                    "totalDebtToCapitalization": 0.7171629145485354,
-                    "interestCoverage": -8.390117035110533,
-                    "cashFlowToDebtRatio": -0.17889691487207182,
-                    "companyEquityMultiplier": 4.942057514549812,
-                    "receivablesTurnover": null,
-                    "payablesTurnover": 20.473084886128365,
-                    "inventoryTurnover": 54.78393351800554,
-                    "fixedAssetTurnover": 7.212722497811497,
-                    "assetTurnover": 0.4280692031934607,
-                    "operatingCashFlowPerShare": -2.6429433412787855,
-                    "freeCashFlowPerShare": -3.6821686098118023,
-                    "cashPerShare": 14.572092512990316,
-                    "payoutRatio": 0,
-                    "operatingCashFlowSalesRatio": -0.2144186422849745,
-                    "freeCashFlowOperatingCashFlowRatio": 1.3932075471698113,
-                    "cashFlowCoverageRatios": -0.17889691487207182,
-                    "shortTermCoverageRatios": -40.458015267175576,
-                    "capitalExpenditureCoverageRatio": 2.543186180422265,
-                    "dividendPaidAndCapexCoverageRatio": null,
-                    "dividendPayoutRatio": null,
-                    "priceBookValueRatio": 21.539726977062653,
-                    "priceToBookRatio": 21.539726977062653,
-                    "priceToSalesRatio": 10.181655878307307,
-                    "priceEarningsRatio": -17.917568702833545,
-                    "priceToFreeCashFlowsRatio": -34.083175785482126,
-                    "priceToOperatingCashFlowsRatio": -47.48493773584906,
-                    "priceCashFlowRatio": -47.48493773584906,
-                    "priceEarningsToGrowthRatio": 0.026592985179387987,
-                    "priceSalesRatio": 10.181655878307307,
-                    "dividendYield": null,
-                    "enterpriseValueMultiple": -46.559691540450686,
-                    "priceFairValue": 21.539726977062653
-                  },
-                  {
-                    "symbol": "DHER.DE",
-                    "date": "2019-12-31",
-                    "period": "FY",
-                    "currentRatio": 1.5368182553811296,
-                    "quickRatio": 1.1318983654312995,
-                    "cashRatio": 1.1318983654312995,
-                    "daysOfSalesOutstanding": 0,
-                    "daysOfInventoryOutstanding": 3.3088711418087633,
-                    "operatingCycle": 3.3088711418087633,
-                    "daysOfPayablesOutstanding": 137.63328296999785,
-                    "cashConversionCycle": -134.32441182818908,
-                    "grossProfitMargin": 0.25123232323232325,
-                    "operatingProfitMargin": -0.38206060606060605,
-                    "pretaxProfitMargin": -0.536080808080808,
-                    "netProfitMargin": 0.18698989898989898,
-                    "effectiveTaxRate": -0.03994573409707567,
-                    "returnOnAssets": 0.08657911475287162,
-                    "returnOnEquity": 0.12377641080502809,
-                    "returnOnCapitalEmployed": -0.2300953864123029,
-                    "netIncomePerEBT": -0.3488091649080494,
-                    "ebtPerEbit": 1.4031302876480543,
-                    "ebitPerRevenue": -0.38206060606060605,
-                    "debtRatio": 0.30052007333408165,
-                    "debtEquityRatio": 0.4296335918694838,
-                    "longTermDebtToCapitalization": null,
-                    "totalDebtToCapitalization": null,
-                    "interestCoverage": -27.811764705882354,
-                    "cashFlowToDebtRatio": null,
-                    "companyEquityMultiplier": 1.4296335918694838,
-                    "receivablesTurnover": null,
-                    "payablesTurnover": 2.6519748139668002,
-                    "inventoryTurnover": 110.30952380952381,
-                    "fixedAssetTurnover": 6.4019658561821,
-                    "assetTurnover": 0.4630149287237625,
-                    "operatingCashFlowPerShare": -1.916419321793491,
-                    "freeCashFlowPerShare": -2.416012187754459,
-                    "cashPerShare": 3.67418770192535,
-                    "payoutRatio": 0,
-                    "operatingCashFlowSalesRatio": -0.29478787878787877,
-                    "freeCashFlowOperatingCashFlowRatio": 1.2606907894736843,
-                    "cashFlowCoverageRatios": null,
-                    "shortTermCoverageRatios": null,
-                    "capitalExpenditureCoverageRatio": 3.8359621451104102,
-                    "dividendPaidAndCapexCoverageRatio": null,
-                    "dividendPayoutRatio": null,
-                    "priceBookValueRatio": 7.149894779542658,
-                    "priceToBookRatio": 7.149894779542658,
-                    "priceToSalesRatio": 10.801396598266665,
-                    "priceEarningsRatio": 57.76459935330596,
-                    "priceToFreeCashFlowsRatio": -29.064423331930854,
-                    "priceToOperatingCashFlowsRatio": -36.641250795929274,
-                    "priceCashFlowRatio": -36.641250795929274,
-                    "priceEarningsToGrowthRatio": 0.08482913191744233,
-                    "priceSalesRatio": 10.801396598266665,
-                    "dividendYield": null,
-                    "enterpriseValueMultiple": -31.947864540617907,
-                    "priceFairValue": 7.149894779542658
-                  },
-                  {
-                    "symbol": "DHER.DE",
-                    "date": "2018-12-31",
-                    "period": "FY",
-                    "currentRatio": 2.6750152718387294,
-                    "quickRatio": 1.1120952962736714,
-                    "cashRatio": 1.1120952962736714,
-                    "daysOfSalesOutstanding": 0,
-                    "daysOfInventoryOutstanding": 3.559295375904372,
-                    "operatingCycle": 3.559295375904372,
-                    "daysOfPayablesOutstanding": 188.64265492293174,
-                    "cashConversionCycle": -185.08335954702736,
-                    "grossProfitMargin": 0.522026762892798,
-                    "operatingProfitMargin": -0.21891444895504436,
-                    "pretaxProfitMargin": -0.3891144188843783,
-                    "netProfitMargin": -0.05743497218463389,
-                    "effectiveTaxRate": -0.07071097372488408,
-                    "returnOnAssets": -0.019052369077306733,
-                    "returnOnEquity": -0.023651786267104204,
-                    "returnOnCapitalEmployed": -0.08679065331425846,
-                    "netIncomePerEBT": 0.14760432766615147,
-                    "ebtPerEbit": 1.7774725274725274,
-                    "ebitPerRevenue": -0.21891444895504436,
-                    "debtRatio": 0.1944638403990025,
-                    "debtEquityRatio": 0.24140920066868923,
-                    "longTermDebtToCapitalization": null,
-                    "totalDebtToCapitalization": null,
-                    "interestCoverage": -53.925925925925924,
-                    "cashFlowToDebtRatio": null,
-                    "companyEquityMultiplier": 1.2414092006686892,
-                    "receivablesTurnover": null,
-                    "payablesTurnover": 1.9348752282410224,
-                    "inventoryTurnover": 102.54838709677419,
-                    "fixedAssetTurnover": 17.141752577319586,
-                    "assetTurnover": 0.33172069825436407,
-                    "operatingCashFlowPerShare": -0.8841429024166214,
-                    "freeCashFlowPerShare": -1.1489560560565937,
-                    "cashPerShare": 1.9557498831706674,
-                    "payoutRatio": 0,
-                    "operatingCashFlowSalesRatio": -0.24748158171703502,
-                    "freeCashFlowOperatingCashFlowRatio": 1.2995139732685297,
-                    "cashFlowCoverageRatios": null,
-                    "shortTermCoverageRatios": null,
-                    "capitalExpenditureCoverageRatio": 3.338742393509128,
-                    "dividendPaidAndCapexCoverageRatio": null,
-                    "dividendPayoutRatio": null,
-                    "priceBookValueRatio": 3.730065646813819,
-                    "priceToBookRatio": 3.730065646813819,
-                    "priceToSalesRatio": 9.05792967398737,
-                    "priceEarningsRatio": -157.70756613007853,
-                    "priceToFreeCashFlowsRatio": -28.164698579565215,
-                    "priceToOperatingCashFlowsRatio": -36.60041935704131,
-                    "priceCashFlowRatio": -36.60041935704131,
-                    "priceEarningsToGrowthRatio": -1.7443412617417775,
-                    "priceSalesRatio": 9.05792967398737,
-                    "dividendYield": null,
-                    "enterpriseValueMultiple": -53.75431173949667,
-                    "priceFairValue": 3.730065646813819
-                  },
-                  {
-                    "symbol": "DHER.DE",
-                    "date": "2017-12-31",
-                    "period": "FY",
-                    "currentRatio": 3.441044104410441,
-                    "quickRatio": 2.8235823582358237,
-                    "cashRatio": 2.8235823582358237,
-                    "daysOfSalesOutstanding": 0,
-                    "daysOfInventoryOutstanding": 4.059656218402426,
-                    "operatingCycle": 4.059656218402426,
-                    "daysOfPayablesOutstanding": 90.788675429727,
-                    "cashConversionCycle": -86.72901921132457,
-                    "grossProfitMargin": 0.6362633321073924,
-                    "operatingProfitMargin": -0.3113276940051489,
-                    "pretaxProfitMargin": -0.618609783008459,
-                    "netProfitMargin": -0.6346083118793674,
-                    "effectiveTaxRate": -0.005053507728894174,
-                    "returnOnAssets": -0.1684894053315106,
-                    "returnOnEquity": -0.20054625755462577,
-                    "returnOnCapitalEmployed": -0.09271631982475356,
-                    "netIncomePerEBT": 1.0258620689655173,
-                    "ebtPerEbit": 1.987005316007088,
-                    "ebitPerRevenue": -0.3113276940051489,
-                    "debtRatio": 0.15984767112586662,
-                    "debtEquityRatio": 0.1902603440260344,
-                    "longTermDebtToCapitalization": null,
-                    "totalDebtToCapitalization": null,
-                    "interestCoverage": -7.8018433179723505,
-                    "cashFlowToDebtRatio": null,
-                    "companyEquityMultiplier": 1.1902603440260344,
-                    "receivablesTurnover": null,
-                    "payablesTurnover": 4.020325203252033,
-                    "inventoryTurnover": 89.9090909090909,
-                    "fixedAssetTurnover": 23.23931623931624,
-                    "assetTurnover": 0.2655014158773557,
-                    "operatingCashFlowPerShare": -1.3351591920575145,
-                    "freeCashFlowPerShare": -1.4816082772262162,
-                    "cashPerShare": 3.977582512330886,
-                    "payoutRatio": 0,
-                    "operatingCashFlowSalesRatio": -0.3872747333578522,
-                    "freeCashFlowOperatingCashFlowRatio": 1.1096866096866096,
-                    "cashFlowCoverageRatios": null,
-                    "shortTermCoverageRatios": null,
-                    "capitalExpenditureCoverageRatio": 9.116883116883116,
-                    "dividendPaidAndCapexCoverageRatio": null,
-                    "dividendPayoutRatio": null,
-                    "priceBookValueRatio": 3.166046325972803,
-                    "priceToBookRatio": 3.166046325972803,
-                    "priceToSalesRatio": 10.018632802011767,
-                    "priceEarningsRatio": -15.787112482567371,
-                    "priceToFreeCashFlowsRatio": -23.312505424621307,
-                    "priceToOperatingCashFlowsRatio": -25.869575107948716,
-                    "priceCashFlowRatio": -25.869575107948716,
-                    "priceEarningsToGrowthRatio": 0.2794483293603779,
-                    "priceSalesRatio": 10.018632802011767,
-                    "dividendYield": null,
-                    "enterpriseValueMultiple": -34.831882353569355,
-                    "priceFairValue": 3.166046325972803
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Ratios",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- OSE (Oslo Stock Exchange)",
-        "tags": [
-          "Financial Ratios"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
-    "/enterprise-values/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          },
-          {
-            "in": "query",
-            "name": "period",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "quarter"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EnterpriseValue"
-                  }
-                },
-                "example": [
-                  {
-                    "symbol": "EDF.PA",
-                    "date": "2020-12-31",
-                    "stockPrice": 10.28,
-                    "numberOfShares": 3029504511,
-                    "marketCapitalization": 31143306373.079998,
-                    "minusCashAndCashEquivalents": 6270000000,
-                    "addTotalDebt": 54713000000,
-                    "enterpriseValue": 79586306373.08
-                  },
-                  {
-                    "symbol": "EDF.PA",
-                    "date": "2019-12-31",
-                    "stockPrice": 11.18,
-                    "numberOfShares": 3029504511,
-                    "marketCapitalization": 33869860432.98,
-                    "minusCashAndCashEquivalents": 3934000000,
-                    "addTotalDebt": 71189000000,
-                    "enterpriseValue": 101124860432.98
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Enterprise Values",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- OSE (Oslo Stock Exchange)",
-        "tags": [
-          "Enterprise Value"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
-    "/key-metrics/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          },
-          {
-            "in": "query",
-            "name": "period",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "quarter"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/KeyMetrics"
-                  }
-                },
-                "example": [
-                  {
-                    "averageInventory": 863500000,
-                    "averagePayables": 5575000000,
-                    "averageReceivables": 29438000000,
-                    "bookValuePerShare": 318.577179209684,
-                    "capexPerShare": -31.895796471578514,
-                    "capexToDepreciation": -0.6147390153045196,
-                    "capexToOperatingCashFlow": -2.9228490642251246,
-                    "capexToRevenue": -8.192047035590862,
-                    "cashPerShare": 195.68080440222403,
-                    "currentRatio": 3.0667558151810534,
-                    "date": "2020-12-31",
-                    "daysOfInventoryOnHand": 3.136005287258651,
-                    "daysPayablesOutstanding": 24.075732899022803,
-                    "daysSalesOutstanding": 62.758715148991655,
-                    "debtToAssets": 0.3037144573488186,
-                    "debtToEquity": 0.06260335034869509,
-                    "dividendYield": 0,
-                    "earningsYield": 0.03154608775159018,
-                    "enterpriseValue": 1263980281681.6602,
-                    "enterpriseValueOverEBITDA": 23.014516882097197,
-                    "evToFreeCashFlow": 29.502609100241816,
-                    "evToOperatingCashFlow": 19.408824422358272,
-                    "evToSales": 6.9248948466893125,
-                    "freeCashFlowPerShare": 61.33080239808977,
-                    "freeCashFlowYield": 0.03356251800495115,
-                    "grahamNetNet": 90.93615973522523,
-                    "grahamNumber": 642.8111468676785,
-                    "incomeQuality": 1.617224167473739,
-                    "intangiblesToTotalAssets": 0.07077242691229475,
-                    "interestCoverage": 305.36296296296297,
-                    "interestDebtPerShare": 20.1372545651315,
-                    "inventoryTurnover": 116.39010989010988,
-                    "investedCapital": 0.06260335034869509,
-                    "marketCap": 1276513281681.6602,
-                    "netCurrentAssetValue": 77224000000,
-                    "netDebtToEBITDA": -0.2282005061816063,
-                    "netIncomePerShare": 57.64605844055451,
-                    "operatingCashFlowPerShare": 93.2265988696683,
-                    "payablesTurnover": 15.160493827160494,
-                    "payoutRatio": 0.0,
-                    "pbRatio": 5.736004033726633,
-                    "peRatio": 31.69965188312747,
-                    "period": "FY",
-                    "pfcfRatio": 29.79514230286535,
-                    "pocfratio": 19.60127267492261,
-                    "priceToSalesRatio": 6.9935586608099625,
-                    "ptbRatio": 5.736004033726633,
-                    "receivablesTurnover": 5.815925312261025,
-                    "researchAndDdevelopementToRevenue": 0.15106258252203783,
-                    "returnOnTangibleAssets": 0.135587684682622,
-                    "revenuePerShare": 261.29186493280423,
-                    "roe": 0.18094848659141563,
-                    "roic": 0.15687528065088172,
-                    "salesGeneralAndAdministrativeToRevenue": 0.060549946035381066,
-                    "shareholdersEquityPerShare": 318.577179209684,
-                    "stockBasedCompensationToRevenue": 0.0711730319350014,
-                    "symbol": "GOOG",
-                    "tangibleAssetValue": 199924000000,
-                    "tangibleBookValuePerShare": 286.19609594649535,
-                    "workingCapital": 117462000000
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Metrics",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
-        "tags": [
-          "Key Metrics"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
-    "/analyst-estimates/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AnalystEstimates"
-                  }
-                },
-                "example": [
-                  {
-                    "symbol": "GOOG",
-                    "date": "2021-12-31",
-                    "estimatedRevenueLow": 206864140000,
-                    "estimatedRevenueHigh": 234949860000,
-                    "estimatedRevenueAvg": 224762614999,
-                    "estimatedEbitdaLow": 59339484152,
-                    "estimatedEbitdaHigh": 61445000921,
-                    "estimatedEbitdaAvg": 59980542854,
-                    "estimatedEbitLow": 39437150662,
-                    "estimatedEbitHigh": 40836481702,
-                    "estimatedEbitAvg": 39863199675,
-                    "estimatedNetIncomeLow": 39566184604,
-                    "estimatedNetIncomeHigh": 40970094098,
-                    "estimatedNetIncomeAvg": 39993627601,
-                    "estimatedSgaExpenseLow": 32275766872,
-                    "estimatedSgaExpenseHigh": 33420993686,
-                    "estimatedSgaExpenseAvg": 32624449735,
-                    "estimatedEpsAvg": 63.9336,
-                    "estimatedEpsHigh": 75.705,
-                    "estimatedEpsLow": 52.9788,
-                    "numberAnalystEstimatedRevenue": 35,
-                    "numberAnalystsEstimatedEps": 40
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Analyst Estimates",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- OSE (Oslo Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- N/A",
-        "tags": [
-          "Analyst Estimates"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
-    "/shares-float/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SharesFloat"
-                  }
-                },
-                "example": [
-                  {
-                    "symbol": "GOOG",
-                    "date": "2021-08-06",
-                    "freeFloat": 180.32786729711353,
-                    "floatShares": 583504913.0,
-                    "outstandingShares": 323580000.0,
-                    "source": "https://www.sec.gov/ix?doc=/Archives/edgar/data/1652044/000165204421000047/goog-20210630.htm"
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Shares Float",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- OSE (Oslo Stock Exchange)",
-        "tags": [
-          "Shares Float"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
     "/daily-price/{tickers}": {
       "get": {
         "responses": {
@@ -2786,312 +1579,6 @@
         }
       ]
     },
-    "/ratios-ttm/{tickers}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "description": "Response format",
-            "schema": {
-              "type": "string",
-              "default": "json",
-              "enum": [
-                "json",
-                "csv"
-              ]
-            }
-          },
-          {
-            "in": "query",
-            "name": "period",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "quarter"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "422": {
-            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/FinancialRatiosTTM"
-                  }
-                },
-                "example": [
-                  {
-                    "symbol": "DHER.DE",
-                    "date": "2020-12-31",
-                    "period": "FY",
-                    "currentRatio": 3.342676944639103,
-                    "quickRatio": 2.9254179597557313,
-                    "cashRatio": 2.9254179597557313,
-                    "daysOfSalesOutstanding": 0,
-                    "daysOfInventoryOutstanding": 6.662537290792335,
-                    "operatingCycle": 6.662537290792335,
-                    "daysOfPayablesOutstanding": 17.828285382009405,
-                    "cashConversionCycle": -11.16574809121707,
-                    "grossProfitMargin": 0.19989481349623756,
-                    "operatingProfitMargin": -0.2610243547212558,
-                    "pretaxProfitMargin": -0.5617363864390322,
-                    "netProfitMargin": -0.5682498584027834,
-                    "effectiveTaxRate": -0.0102268635217861,
-                    "returnOnAssets": -0.24325026410127634,
-                    "returnOnEquity": -1.202156795617939,
-                    "returnOnCapitalEmployed": -0.13510910080830926,
-                    "netIncomePerEBT": 1.0115952466690674,
-                    "ebtPerEbit": 2.152045877247365,
-                    "ebitPerRevenue": -0.2610243547212558,
-                    "debtRatio": 0.7976551270283844,
-                    "debtEquityRatio": 3.942057514549812,
-                    "longTermDebtToCapitalization": 0.7162631438354501,
-                    "totalDebtToCapitalization": 0.7171629145485354,
-                    "interestCoverage": -8.390117035110533,
-                    "cashFlowToDebtRatio": -0.17889691487207182,
-                    "companyEquityMultiplier": 4.942057514549812,
-                    "receivablesTurnover": null,
-                    "payablesTurnover": 20.473084886128365,
-                    "inventoryTurnover": 54.78393351800554,
-                    "fixedAssetTurnover": 7.212722497811497,
-                    "assetTurnover": 0.4280692031934607,
-                    "operatingCashFlowPerShare": -2.6429433412787855,
-                    "freeCashFlowPerShare": -3.6821686098118023,
-                    "cashPerShare": 14.572092512990316,
-                    "payoutRatio": 0,
-                    "operatingCashFlowSalesRatio": -0.2144186422849745,
-                    "freeCashFlowOperatingCashFlowRatio": 1.3932075471698113,
-                    "cashFlowCoverageRatios": -0.17889691487207182,
-                    "shortTermCoverageRatios": -40.458015267175576,
-                    "capitalExpenditureCoverageRatio": 2.543186180422265,
-                    "dividendPaidAndCapexCoverageRatio": null,
-                    "dividendPayoutRatio": null,
-                    "priceBookValueRatio": 21.539726977062653,
-                    "priceToBookRatio": 21.539726977062653,
-                    "priceToSalesRatio": 10.181655878307307,
-                    "priceEarningsRatio": -17.917568702833545,
-                    "priceToFreeCashFlowsRatio": -34.083175785482126,
-                    "priceToOperatingCashFlowsRatio": -47.48493773584906,
-                    "priceCashFlowRatio": -47.48493773584906,
-                    "priceEarningsToGrowthRatio": 0.026592985179387987,
-                    "priceSalesRatio": 10.181655878307307,
-                    "dividendYield": null,
-                    "enterpriseValueMultiple": -46.559691540450686,
-                    "priceFairValue": 21.539726977062653
-                  },
-                  {
-                    "symbol": "DHER.DE",
-                    "date": "2019-12-31",
-                    "period": "FY",
-                    "currentRatio": 1.5368182553811296,
-                    "quickRatio": 1.1318983654312995,
-                    "cashRatio": 1.1318983654312995,
-                    "daysOfSalesOutstanding": 0,
-                    "daysOfInventoryOutstanding": 3.3088711418087633,
-                    "operatingCycle": 3.3088711418087633,
-                    "daysOfPayablesOutstanding": 137.63328296999785,
-                    "cashConversionCycle": -134.32441182818908,
-                    "grossProfitMargin": 0.25123232323232325,
-                    "operatingProfitMargin": -0.38206060606060605,
-                    "pretaxProfitMargin": -0.536080808080808,
-                    "netProfitMargin": 0.18698989898989898,
-                    "effectiveTaxRate": -0.03994573409707567,
-                    "returnOnAssets": 0.08657911475287162,
-                    "returnOnEquity": 0.12377641080502809,
-                    "returnOnCapitalEmployed": -0.2300953864123029,
-                    "netIncomePerEBT": -0.3488091649080494,
-                    "ebtPerEbit": 1.4031302876480543,
-                    "ebitPerRevenue": -0.38206060606060605,
-                    "debtRatio": 0.30052007333408165,
-                    "debtEquityRatio": 0.4296335918694838,
-                    "longTermDebtToCapitalization": null,
-                    "totalDebtToCapitalization": null,
-                    "interestCoverage": -27.811764705882354,
-                    "cashFlowToDebtRatio": null,
-                    "companyEquityMultiplier": 1.4296335918694838,
-                    "receivablesTurnover": null,
-                    "payablesTurnover": 2.6519748139668002,
-                    "inventoryTurnover": 110.30952380952381,
-                    "fixedAssetTurnover": 6.4019658561821,
-                    "assetTurnover": 0.4630149287237625,
-                    "operatingCashFlowPerShare": -1.916419321793491,
-                    "freeCashFlowPerShare": -2.416012187754459,
-                    "cashPerShare": 3.67418770192535,
-                    "payoutRatio": 0,
-                    "operatingCashFlowSalesRatio": -0.29478787878787877,
-                    "freeCashFlowOperatingCashFlowRatio": 1.2606907894736843,
-                    "cashFlowCoverageRatios": null,
-                    "shortTermCoverageRatios": null,
-                    "capitalExpenditureCoverageRatio": 3.8359621451104102,
-                    "dividendPaidAndCapexCoverageRatio": null,
-                    "dividendPayoutRatio": null,
-                    "priceBookValueRatio": 7.149894779542658,
-                    "priceToBookRatio": 7.149894779542658,
-                    "priceToSalesRatio": 10.801396598266665,
-                    "priceEarningsRatio": 57.76459935330596,
-                    "priceToFreeCashFlowsRatio": -29.064423331930854,
-                    "priceToOperatingCashFlowsRatio": -36.641250795929274,
-                    "priceCashFlowRatio": -36.641250795929274,
-                    "priceEarningsToGrowthRatio": 0.08482913191744233,
-                    "priceSalesRatio": 10.801396598266665,
-                    "dividendYield": null,
-                    "enterpriseValueMultiple": -31.947864540617907,
-                    "priceFairValue": 7.149894779542658
-                  },
-                  {
-                    "symbol": "DHER.DE",
-                    "date": "2018-12-31",
-                    "period": "FY",
-                    "currentRatio": 2.6750152718387294,
-                    "quickRatio": 1.1120952962736714,
-                    "cashRatio": 1.1120952962736714,
-                    "daysOfSalesOutstanding": 0,
-                    "daysOfInventoryOutstanding": 3.559295375904372,
-                    "operatingCycle": 3.559295375904372,
-                    "daysOfPayablesOutstanding": 188.64265492293174,
-                    "cashConversionCycle": -185.08335954702736,
-                    "grossProfitMargin": 0.522026762892798,
-                    "operatingProfitMargin": -0.21891444895504436,
-                    "pretaxProfitMargin": -0.3891144188843783,
-                    "netProfitMargin": -0.05743497218463389,
-                    "effectiveTaxRate": -0.07071097372488408,
-                    "returnOnAssets": -0.019052369077306733,
-                    "returnOnEquity": -0.023651786267104204,
-                    "returnOnCapitalEmployed": -0.08679065331425846,
-                    "netIncomePerEBT": 0.14760432766615147,
-                    "ebtPerEbit": 1.7774725274725274,
-                    "ebitPerRevenue": -0.21891444895504436,
-                    "debtRatio": 0.1944638403990025,
-                    "debtEquityRatio": 0.24140920066868923,
-                    "longTermDebtToCapitalization": null,
-                    "totalDebtToCapitalization": null,
-                    "interestCoverage": -53.925925925925924,
-                    "cashFlowToDebtRatio": null,
-                    "companyEquityMultiplier": 1.2414092006686892,
-                    "receivablesTurnover": null,
-                    "payablesTurnover": 1.9348752282410224,
-                    "inventoryTurnover": 102.54838709677419,
-                    "fixedAssetTurnover": 17.141752577319586,
-                    "assetTurnover": 0.33172069825436407,
-                    "operatingCashFlowPerShare": -0.8841429024166214,
-                    "freeCashFlowPerShare": -1.1489560560565937,
-                    "cashPerShare": 1.9557498831706674,
-                    "payoutRatio": 0,
-                    "operatingCashFlowSalesRatio": -0.24748158171703502,
-                    "freeCashFlowOperatingCashFlowRatio": 1.2995139732685297,
-                    "cashFlowCoverageRatios": null,
-                    "shortTermCoverageRatios": null,
-                    "capitalExpenditureCoverageRatio": 3.338742393509128,
-                    "dividendPaidAndCapexCoverageRatio": null,
-                    "dividendPayoutRatio": null,
-                    "priceBookValueRatio": 3.730065646813819,
-                    "priceToBookRatio": 3.730065646813819,
-                    "priceToSalesRatio": 9.05792967398737,
-                    "priceEarningsRatio": -157.70756613007853,
-                    "priceToFreeCashFlowsRatio": -28.164698579565215,
-                    "priceToOperatingCashFlowsRatio": -36.60041935704131,
-                    "priceCashFlowRatio": -36.60041935704131,
-                    "priceEarningsToGrowthRatio": -1.7443412617417775,
-                    "priceSalesRatio": 9.05792967398737,
-                    "dividendYield": null,
-                    "enterpriseValueMultiple": -53.75431173949667,
-                    "priceFairValue": 3.730065646813819
-                  },
-                  {
-                    "symbol": "DHER.DE",
-                    "date": "2017-12-31",
-                    "period": "FY",
-                    "currentRatio": 3.441044104410441,
-                    "quickRatio": 2.8235823582358237,
-                    "cashRatio": 2.8235823582358237,
-                    "daysOfSalesOutstanding": 0,
-                    "daysOfInventoryOutstanding": 4.059656218402426,
-                    "operatingCycle": 4.059656218402426,
-                    "daysOfPayablesOutstanding": 90.788675429727,
-                    "cashConversionCycle": -86.72901921132457,
-                    "grossProfitMargin": 0.6362633321073924,
-                    "operatingProfitMargin": -0.3113276940051489,
-                    "pretaxProfitMargin": -0.618609783008459,
-                    "netProfitMargin": -0.6346083118793674,
-                    "effectiveTaxRate": -0.005053507728894174,
-                    "returnOnAssets": -0.1684894053315106,
-                    "returnOnEquity": -0.20054625755462577,
-                    "returnOnCapitalEmployed": -0.09271631982475356,
-                    "netIncomePerEBT": 1.0258620689655173,
-                    "ebtPerEbit": 1.987005316007088,
-                    "ebitPerRevenue": -0.3113276940051489,
-                    "debtRatio": 0.15984767112586662,
-                    "debtEquityRatio": 0.1902603440260344,
-                    "longTermDebtToCapitalization": null,
-                    "totalDebtToCapitalization": null,
-                    "interestCoverage": -7.8018433179723505,
-                    "cashFlowToDebtRatio": null,
-                    "companyEquityMultiplier": 1.1902603440260344,
-                    "receivablesTurnover": null,
-                    "payablesTurnover": 4.020325203252033,
-                    "inventoryTurnover": 89.9090909090909,
-                    "fixedAssetTurnover": 23.23931623931624,
-                    "assetTurnover": 0.2655014158773557,
-                    "operatingCashFlowPerShare": -1.3351591920575145,
-                    "freeCashFlowPerShare": -1.4816082772262162,
-                    "cashPerShare": 3.977582512330886,
-                    "payoutRatio": 0,
-                    "operatingCashFlowSalesRatio": -0.3872747333578522,
-                    "freeCashFlowOperatingCashFlowRatio": 1.1096866096866096,
-                    "cashFlowCoverageRatios": null,
-                    "shortTermCoverageRatios": null,
-                    "capitalExpenditureCoverageRatio": 9.116883116883116,
-                    "dividendPaidAndCapexCoverageRatio": null,
-                    "dividendPayoutRatio": null,
-                    "priceBookValueRatio": 3.166046325972803,
-                    "priceToBookRatio": 3.166046325972803,
-                    "priceToSalesRatio": 10.018632802011767,
-                    "priceEarningsRatio": -15.787112482567371,
-                    "priceToFreeCashFlowsRatio": -23.312505424621307,
-                    "priceToOperatingCashFlowsRatio": -25.869575107948716,
-                    "priceCashFlowRatio": -25.869575107948716,
-                    "priceEarningsToGrowthRatio": 0.2794483293603779,
-                    "priceSalesRatio": 10.018632802011767,
-                    "dividendYield": null,
-                    "enterpriseValueMultiple": -34.831882353569355,
-                    "priceFairValue": 3.166046325972803
-                  }
-                ]
-              }
-            }
-          },
-          "default": {
-            "$ref": "#/components/responses/DEFAULT_ERROR"
-          }
-        },
-        "summary": "Ratios",
-        "description": "Exchanges supported.\n- NASDAQ\n- NYSE (New York Stock Exchange)\n- XETRA (German Electronic Exchange)\n- ASX (Australian Stock Exchange)\n- TSX (Toronto Stock Exchange)\n- ENX (EuroNext)\n- NSE (National Stock Exchange of India)\n- LSE (London Stock Exchange)\n- MOEX (Moscow Stock Exchange)\n- HKEX (Hong Kong Stock Exchange)\n- SIX (Swiss Stock Exchange)\n\nNot supported.\n- OSE (Oslo Stock Exchange)",
-        "tags": [
-          "Financial Ratios TTM"
-        ]
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "tickers",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "description": "Individual or comma separated tickers"
-          }
-        }
-      ]
-    },
     "/symbols": {
       "get": {
         "parameters": [
@@ -3121,7 +1608,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Symbol"
+                    "$ref": "#/components/schemas/SymbolSQL"
                   }
                 },
                 "example": [
@@ -3193,10 +1680,6 @@
   },
   "tags": [
     {
-      "name": "Company Profile",
-      "description": ""
-    },
-    {
       "name": "Stock & Crypto Quotes",
       "description": ""
     },
@@ -3217,10 +1700,6 @@
       "description": "Get number of shares owned by investor various groups"
     },
     {
-      "name": "Key Executives",
-      "description": "Get details of key players in a company"
-    },
-    {
       "name": "Income Statement",
       "description": "Get company income statements by year/quarter"
     },
@@ -3229,16 +1708,8 @@
       "description": "Get company income statements trailing twelve months"
     },
     {
-      "name": "Income Statement Growth",
-      "description": "Income statement growth YoY"
-    },
-    {
       "name": "Balance Sheet",
       "description": "Company balance sheets by year/quarter"
-    },
-    {
-      "name": "Balance Sheet Growth",
-      "description": "Balance sheet growth YoY"
     },
     {
       "name": "Cash Flow Statement",
@@ -3249,36 +1720,8 @@
       "description": "Get company cash flow statements by year/quarter"
     },
     {
-      "name": "Cash Flow Statement Growth",
-      "description": "Cash flow growth YoY"
-    },
-    {
-      "name": "Financial Ratios",
-      "description": "Company financial ratios"
-    },
-    {
-      "name": "Enterprise Value",
-      "description": "Enterprise value metrics"
-    },
-    {
-      "name": "Key Metrics",
-      "description": "Key financial metrics"
-    },
-    {
-      "name": "Analyst Estimates",
-      "description": "Analyst estimates of key financial figures"
-    },
-    {
-      "name": "Shares Float",
-      "description": "Regular shares a company has issued to the public that are available for investors to trade"
-    },
-    {
       "name": "Historical Daily Price",
       "description": ""
-    },
-    {
-      "name": "Financial Ratios TTM",
-      "description": "Company financial ratios ttm"
     },
     {
       "name": "List Symbols",
@@ -3291,9 +1734,9 @@
       "Error": {
         "type": "object",
         "properties": {
-          "message": {
+          "status": {
             "type": "string",
-            "description": "Error message"
+            "description": "Error name"
           },
           "errors": {
             "type": "object",
@@ -3303,9 +1746,9 @@
             "type": "integer",
             "description": "Error code"
           },
-          "status": {
+          "message": {
             "type": "string",
-            "description": "Error name"
+            "description": "Error message"
           }
         }
       },
@@ -3335,118 +1778,15 @@
           }
         }
       },
-      "Profile": {
-        "type": "object",
-        "properties": {
-          "symbol": {
-            "type": "string"
-          },
-          "price": {
-            "type": "number"
-          },
-          "beta": {
-            "type": "number"
-          },
-          "volAvg": {
-            "type": "integer"
-          },
-          "mktCap": {
-            "type": "number"
-          },
-          "lastDiv": {
-            "type": "number"
-          },
-          "range": {
-            "type": "string"
-          },
-          "changes": {
-            "type": "number"
-          },
-          "companyName": {
-            "type": "string"
-          },
-          "currency": {
-            "type": "string"
-          },
-          "cik": {
-            "type": "string"
-          },
-          "isin": {
-            "type": "string"
-          },
-          "cusip": {
-            "type": "string"
-          },
-          "exchange": {
-            "type": "string"
-          },
-          "exchangeShortName": {
-            "type": "string"
-          },
-          "industry": {
-            "type": "string"
-          },
-          "website": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "ceo": {
-            "type": "string"
-          },
-          "sector": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "fullTimeEmployees": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "address": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "zip": {
-            "type": "string"
-          },
-          "dcfDiff": {
-            "type": "number"
-          },
-          "dcf": {
-            "type": "number"
-          },
-          "ipoDate": {
-            "type": "string"
-          },
-          "defaultImage": {
-            "type": "boolean"
-          },
-          "isEtf": {
-            "type": "boolean"
-          },
-          "isActivelyTrading": {
-            "type": "boolean"
-          }
-        }
-      },
       "Quote": {
         "type": "object",
         "properties": {
           "symbol": {
-            "type": "string"
+            "readOnly": true
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "price": {
             "type": "number"
@@ -3472,7 +1812,8 @@
             "nullable": true
           },
           "marketCap": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "priceAvg50": {
             "type": "number",
@@ -3490,7 +1831,8 @@
             "nullable": true
           },
           "exchange": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "open": {
             "type": "number"
@@ -3499,7 +1841,8 @@
             "type": "number"
           },
           "eps": {
-            "type": "number"
+            "type": "number",
+            "nullable": true
           },
           "pe": {
             "type": "number",
@@ -3510,7 +1853,8 @@
             "nullable": true
           },
           "sharesOutstanding": {
-            "type": "integer"
+            "type": "integer",
+            "nullable": true
           },
           "timestamp": {
             "type": "integer"
@@ -3648,37 +1992,9 @@
           },
           "sovereignWealthFunds": {
             "type": "integer"
-          }
-        }
-      },
-      "KeyExec": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string"
           },
-          "name": {
-            "type": "string"
-          },
-          "pay": {
-            "type": "integer",
-            "nullable": true
-          },
-          "currencyPay": {
-            "type": "string",
-            "nullable": true
-          },
-          "gender": {
-            "type": "string",
-            "nullable": true
-          },
-          "yearBorn": {
-            "type": "integer",
-            "nullable": true
-          },
-          "titleSince": {
-            "type": "integer",
-            "nullable": true
+          "companyControlledFoundation": {
+            "type": "integer"
           }
         }
       },
@@ -3689,7 +2005,7 @@
             "type": "string"
           },
           "symbol": {
-            "type": "string"
+            "readOnly": true
           },
           "reportedCurrency": {
             "type": "string"
@@ -3697,92 +2013,59 @@
           "fillingDate": {
             "type": "string"
           },
-          "acceptedDate": {
-            "type": "string"
-          },
           "period": {
             "type": "string"
           },
           "revenue": {
-            "type": "integer"
+            "type": "number"
           },
           "costOfRevenue": {
-            "type": "integer"
+            "type": "number"
           },
           "grossProfit": {
-            "type": "integer"
-          },
-          "grossProfitRatio": {
             "type": "number"
           },
           "researchAndDevelopmentExpenses": {
-            "type": "integer"
-          },
-          "generalAndAdministrativeExpenses": {
-            "type": "integer"
+            "type": "number"
           },
           "sellingAndMarketingExpenses": {
-            "type": "integer"
+            "type": "number"
           },
           "sellingGeneralAndAdministrativeExpenses": {
-            "type": "integer"
+            "type": "number"
           },
           "otherExpenses": {
-            "type": "integer"
+            "type": "number"
           },
           "operatingExpenses": {
-            "type": "integer"
-          },
-          "costAndExpenses": {
-            "type": "integer"
+            "type": "number"
           },
           "interestExpense": {
-            "type": "integer"
+            "type": "number"
           },
           "depreciationAndAmortization": {
-            "type": "integer"
+            "type": "number"
+          },
+          "ebit": {
+            "type": "number"
           },
           "ebitda": {
-            "type": "integer"
-          },
-          "ebitdaratio": {
             "type": "number"
           },
           "operatingIncome": {
-            "type": "integer"
-          },
-          "operatingIncomeRatio": {
             "type": "number"
           },
           "totalOtherIncomeExpensesNet": {
-            "type": "integer"
+            "type": "number"
           },
           "incomeBeforeTax": {
-            "type": "integer"
-          },
-          "incomeBeforeTaxRatio": {
             "type": "number"
           },
           "incomeTaxExpense": {
-            "type": "integer"
+            "type": "number"
           },
           "netIncome": {
-            "type": "integer"
-          },
-          "netIncomeRatio": {
             "type": "number"
-          },
-          "eps": {
-            "type": "number"
-          },
-          "epsdiluted": {
-            "type": "number"
-          },
-          "weightedAverageShsOut": {
-            "type": "integer"
-          },
-          "weightedAverageShsOutDil": {
-            "type": "integer"
           }
         }
       },
@@ -3808,149 +2091,57 @@
             "type": "string"
           },
           "revenueTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "costOfRevenueTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "grossProfitTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "researchAndDevelopmentExpensesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "generalAndAdministrativeExpensesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "sellingAndMarketingExpensesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "sellingGeneralAndAdministrativeExpensesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "otherExpensesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "operatingExpensesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "costAndExpensesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "interestExpenseTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "depreciationAndAmortizationTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "ebitdaTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "operatingIncomeTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "totalOtherIncomeExpensesNetTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "incomeBeforeTaxTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "incomeTaxExpenseTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "netIncomeTTM": {
-            "type": "integer"
-          }
-        }
-      },
-      "IncomeStatementGrowth": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "symbol": {
-            "type": "string"
-          },
-          "period": {
-            "type": "string"
-          },
-          "growthRevenue": {
-            "type": "number"
-          },
-          "growthCostOfRevenue": {
-            "type": "number"
-          },
-          "growthGrossProfit": {
-            "type": "number"
-          },
-          "growthGrossProfitRatio": {
-            "type": "number"
-          },
-          "growthResearchAndDevelopmentExpenses": {
-            "type": "number"
-          },
-          "growthGeneralAndAdministrativeExpenses": {
-            "type": "number"
-          },
-          "growthSellingAndMarketingExpenses": {
-            "type": "number"
-          },
-          "growthOtherExpenses": {
-            "type": "number"
-          },
-          "growthOperatingExpenses": {
-            "type": "number"
-          },
-          "growthCostAndExpenses": {
-            "type": "number"
-          },
-          "growthInterestExpense": {
-            "type": "number"
-          },
-          "growthDepreciationAndAmortization": {
-            "type": "number"
-          },
-          "growthEBITDA": {
-            "type": "number"
-          },
-          "growthEBITDARatio": {
-            "type": "number"
-          },
-          "growthOperatingIncome": {
-            "type": "number"
-          },
-          "growthOperatingIncomeRatio": {
-            "type": "number"
-          },
-          "growthTotalOtherIncomeExpensesNet": {
-            "type": "number"
-          },
-          "growthIncomeBeforeTax": {
-            "type": "number"
-          },
-          "growthIncomeBeforeTaxRatio": {
-            "type": "number"
-          },
-          "growthIncomeTaxExpense": {
-            "type": "number"
-          },
-          "growthNetIncome": {
-            "type": "number"
-          },
-          "growthNetIncomeRatio": {
-            "type": "number"
-          },
-          "growthEPS": {
-            "type": "number"
-          },
-          "growthEPSDiluted": {
-            "type": "number"
-          },
-          "growthWeightedAverageShsOut": {
-            "type": "number"
-          },
-          "growthWeightedAverageShsOutDil": {
             "type": "number"
           }
         }
@@ -3962,7 +2153,7 @@
             "type": "string"
           },
           "symbol": {
-            "type": "string"
+            "readOnly": true
           },
           "reportedCurrency": {
             "type": "string"
@@ -3970,258 +2161,79 @@
           "fillingDate": {
             "type": "string"
           },
-          "acceptedDate": {
-            "type": "string"
-          },
           "period": {
             "type": "string"
           },
           "cashAndCashEquivalents": {
-            "type": "integer"
+            "type": "number"
           },
           "shortTermInvestments": {
-            "type": "integer"
+            "type": "number"
           },
           "cashAndShortTermInvestments": {
-            "type": "integer"
+            "type": "number"
           },
           "netReceivables": {
-            "type": "integer"
+            "type": "number"
           },
           "inventory": {
-            "type": "integer"
+            "type": "number"
           },
           "otherCurrentAssets": {
-            "type": "integer"
+            "type": "number"
           },
           "totalCurrentAssets": {
-            "type": "integer"
+            "type": "number"
           },
           "propertyPlantEquipmentNet": {
-            "type": "integer"
+            "type": "number"
           },
           "goodwill": {
-            "type": "integer"
+            "type": "number"
           },
           "intangibleAssets": {
-            "type": "integer"
-          },
-          "goodwillAndIntangibleAssets": {
-            "type": "integer"
+            "type": "number"
           },
           "longTermInvestments": {
-            "type": "integer"
-          },
-          "taxAssets": {
-            "type": "integer"
-          },
-          "otherNonCurrentAssets": {
-            "type": "integer"
-          },
-          "totalNonCurrentAssets": {
-            "type": "integer"
+            "type": "number"
           },
           "otherAssets": {
-            "type": "integer"
+            "type": "number"
           },
           "totalAssets": {
-            "type": "integer"
+            "type": "number"
           },
           "accountPayables": {
-            "type": "integer"
+            "type": "number"
           },
           "shortTermDebt": {
-            "type": "integer"
-          },
-          "taxPayables": {
-            "type": "integer"
-          },
-          "deferredRevenue": {
-            "type": "integer"
+            "type": "number"
           },
           "otherCurrentLiabilities": {
-            "type": "integer"
+            "type": "number"
           },
           "totalCurrentLiabilities": {
-            "type": "integer"
+            "type": "number"
           },
           "longTermDebt": {
-            "type": "integer"
-          },
-          "deferredRevenueNonCurrent": {
-            "type": "integer"
-          },
-          "deferredTaxLiabilitiesNonCurrent": {
-            "type": "integer"
-          },
-          "otherNonCurrentLiabilities": {
-            "type": "integer"
-          },
-          "totalNonCurrentLiabilities": {
-            "type": "integer"
+            "type": "number"
           },
           "otherLiabilities": {
-            "type": "integer"
+            "type": "number"
           },
           "totalLiabilities": {
-            "type": "integer"
+            "type": "number"
           },
           "commonStock": {
-            "type": "integer"
+            "type": "number"
           },
           "retainedEarnings": {
-            "type": "integer"
-          },
-          "accumulatedOtherComprehensiveIncomeLoss": {
-            "type": "integer"
-          },
-          "othertotalStockholdersEquity": {
-            "type": "integer"
+            "type": "number"
           },
           "totalStockholdersEquity": {
-            "type": "integer"
-          },
-          "totalLiabilitiesAndStockholdersEquity": {
-            "type": "integer"
-          },
-          "totalInvestments": {
-            "type": "integer"
-          },
-          "totalDebt": {
-            "type": "integer"
+            "type": "number"
           },
           "netDebt": {
-            "type": "integer"
-          }
-        }
-      },
-      "BalanceSheetGrowth": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "symbol": {
-            "type": "string"
-          },
-          "period": {
-            "type": "string"
-          },
-          "growthCashAndCashEquivalents": {
-            "type": "number"
-          },
-          "growthShortTermInvestments": {
-            "type": "number"
-          },
-          "growthCashAndShortTermInvestments": {
-            "type": "number"
-          },
-          "growthNetReceivables": {
-            "type": "number"
-          },
-          "growthInventory": {
-            "type": "number"
-          },
-          "growthOtherCurrentAssets": {
-            "type": "number"
-          },
-          "growthTotalCurrentAssets": {
-            "type": "number"
-          },
-          "growthPropertyPlantEquipmentNet": {
-            "type": "number"
-          },
-          "growthGoodwill": {
-            "type": "number"
-          },
-          "growthIntangibleAssets": {
-            "type": "number"
-          },
-          "growthGoodwillAndIntangibleAssets": {
-            "type": "number"
-          },
-          "growthLongTermInvestments": {
-            "type": "number"
-          },
-          "growthTaxAssets": {
-            "type": "number"
-          },
-          "growthOtherNonCurrentAssets": {
-            "type": "number"
-          },
-          "growthTotalNonCurrentAssets": {
-            "type": "number"
-          },
-          "growthOtherAssets": {
-            "type": "number"
-          },
-          "growthTotalAssets": {
-            "type": "number"
-          },
-          "growthAccountPayables": {
-            "type": "number"
-          },
-          "growthShortTermDebt": {
-            "type": "number"
-          },
-          "growthTaxPayables": {
-            "type": "number"
-          },
-          "growthDeferredRevenue": {
-            "type": "number"
-          },
-          "growthOtherCurrentLiabilities": {
-            "type": "number"
-          },
-          "growthTotalCurrentLiabilities": {
-            "type": "number"
-          },
-          "growthLongTermDebt": {
-            "type": "number"
-          },
-          "growthDeferredRevenueNonCurrent": {
-            "type": "number"
-          },
-          "growthDeferrredTaxLiabilitiesNonCurrent": {
-            "type": "number"
-          },
-          "growthOtherNonCurrentLiabilities": {
-            "type": "number"
-          },
-          "growthTotalNonCurrentLiabilities": {
-            "type": "number"
-          },
-          "growthOtherLiabilities": {
-            "type": "number"
-          },
-          "growthTotalLiabilities": {
-            "type": "number"
-          },
-          "growthCommonStock": {
-            "type": "number"
-          },
-          "growthRetainedEarnings": {
-            "type": "number"
-          },
-          "growthAccumulatedOtherComprehensiveIncomeLoss": {
-            "type": "number"
-          },
-          "growthOthertotalStockholdersEquity": {
-            "type": "number"
-          },
-          "growthTotalStockholdersEquity": {
-            "type": "number"
-          },
-          "growthTotalLiabilitiesAndStockholdersEquity": {
-            "type": "number"
-          },
-          "growthTotalInvestments": {
-            "type": "number"
-          },
-          "growthTotalDebt": {
-            "type": "number"
-          },
-          "growthNetDebt": {
             "type": "number"
           }
         }
@@ -4233,7 +2245,7 @@
             "type": "string"
           },
           "symbol": {
-            "type": "string"
+            "readOnly": true
           },
           "reportedCurrency": {
             "type": "string"
@@ -4241,101 +2253,44 @@
           "fillingDate": {
             "type": "string"
           },
-          "acceptedDate": {
-            "type": "string"
-          },
           "period": {
             "type": "string"
           },
           "netIncome": {
-            "type": "integer"
-          },
-          "depreciationAndAmortization": {
-            "type": "integer"
-          },
-          "deferredIncomeTax": {
-            "type": "integer"
-          },
-          "stockBasedCompensation": {
-            "type": "integer"
+            "type": "number"
           },
           "changeInWorkingCapital": {
-            "type": "integer"
-          },
-          "accountsReceivables": {
-            "type": "integer"
-          },
-          "inventory": {
-            "type": "integer"
-          },
-          "accountsPayables": {
-            "type": "integer"
-          },
-          "otherWorkingCapital": {
-            "type": "integer"
+            "type": "number"
           },
           "otherNonCashItems": {
-            "type": "integer"
-          },
-          "netCashProvidedByOperatingActivities": {
-            "type": "integer"
-          },
-          "investmentsInPropertyPlantAndEquipment": {
-            "type": "integer"
-          },
-          "acquisitionsNet": {
-            "type": "integer"
-          },
-          "purchasesOfInvestments": {
-            "type": "integer"
-          },
-          "salesMaturitiesOfInvestments": {
-            "type": "integer"
-          },
-          "otherInvestingActivites": {
-            "type": "integer"
+            "type": "number"
           },
           "netCashUsedForInvestingActivites": {
-            "type": "integer"
-          },
-          "debtRepayment": {
-            "type": "integer"
-          },
-          "commonStockIssued": {
-            "type": "integer"
-          },
-          "commonStockRepurchased": {
-            "type": "integer"
+            "type": "number"
           },
           "dividendsPaid": {
-            "type": "integer"
-          },
-          "otherFinancingActivites": {
-            "type": "integer"
+            "type": "number"
           },
           "netCashUsedProvidedByFinancingActivities": {
-            "type": "integer"
-          },
-          "effectOfForexChangesOnCash": {
-            "type": "integer"
+            "type": "number"
           },
           "netChangeInCash": {
-            "type": "integer"
+            "type": "number"
           },
           "cashAtEndOfPeriod": {
-            "type": "integer"
+            "type": "number"
           },
           "cashAtBeginningOfPeriod": {
-            "type": "integer"
+            "type": "number"
           },
           "operatingCashFlow": {
-            "type": "integer"
+            "type": "number"
           },
           "capitalExpenditure": {
-            "type": "integer"
+            "type": "number"
           },
           "freeCashFlow": {
-            "type": "integer"
+            "type": "number"
           }
         }
       },
@@ -4361,689 +2316,113 @@
             "type": "string"
           },
           "netIncomeTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "depreciationAndAmortizationTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "deferredIncomeTaxTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "stockBasedCompensationTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "changeInWorkingCapitalTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "accountsReceivablesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "inventoryTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "accountsPayablesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "otherWorkingCapitalTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "otherNonCashItemsTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "netCashProvidedByOperatingActivitiesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "investmentsInPropertyPlantAndEquipmentTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "acquisitionsNetTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "purchasesOfInvestmentsTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "salesMaturitiesOfInvestmentsTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "otherInvestingActivitesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "netCashUsedForInvestingActivitesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "debtRepaymentTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "commonStockIssuedTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "commonStockRepurchasedTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "dividendsPaidTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "otherFinancingActivitesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "netCashUsedProvidedByFinancingActivitiesTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "effectOfForexChangesOnCashTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "netChangeInCashTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "cashAtEndOfPeriodTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "cashAtBeginningOfPeriodTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "operatingCashFlowTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "capitalExpenditureTTM": {
-            "type": "integer"
+            "type": "number"
           },
           "freeCashFlowTTM": {
-            "type": "integer"
-          }
-        }
-      },
-      "CashflowGrowth": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "period": {
-            "type": "string"
-          },
-          "symbol": {
-            "type": "string"
-          },
-          "growthNetIncome": {
             "type": "number"
-          },
-          "growthDepreciationAndAmortization": {
-            "type": "number"
-          },
-          "growthDeferredIncomeTax": {
-            "type": "number"
-          },
-          "growthStockBasedCompensation": {
-            "type": "number"
-          },
-          "growthChangeInWorkingCapital": {
-            "type": "number"
-          },
-          "growthAccountsReceivables": {
-            "type": "number"
-          },
-          "growthInventory": {
-            "type": "number"
-          },
-          "growthAccountsPayables": {
-            "type": "number"
-          },
-          "growthOtherWorkingCapital": {
-            "type": "number"
-          },
-          "growthOtherNonCashItems": {
-            "type": "number"
-          },
-          "growthNetCashProvidedByOperatingActivites": {
-            "type": "number"
-          },
-          "growthInvestmentsInPropertyPlantAndEquipment": {
-            "type": "number"
-          },
-          "growthAcquisitionsNet": {
-            "type": "number"
-          },
-          "growthPurchasesOfInvestments": {
-            "type": "number"
-          },
-          "growthSalesMaturitiesOfInvestments": {
-            "type": "number"
-          },
-          "growthOtherInvestingActivites": {
-            "type": "number"
-          },
-          "growthNetCashUsedForInvestingActivites": {
-            "type": "number"
-          },
-          "growthDebtRepayment": {
-            "type": "number"
-          },
-          "growthCommonStockIssued": {
-            "type": "number"
-          },
-          "growthCommonStockRepurchased": {
-            "type": "number"
-          },
-          "growthDividendsPaid": {
-            "type": "number"
-          },
-          "growthOtherFinancingActivites": {
-            "type": "number"
-          },
-          "growthNetCashUsedProvidedByFinancingActivities": {
-            "type": "number"
-          },
-          "growthEffectOfForexChangesOnCash": {
-            "type": "number"
-          },
-          "growthNetChangeInCash": {
-            "type": "number"
-          },
-          "growthCashAtEndOfPeriod": {
-            "type": "number"
-          },
-          "growthCashAtBeginningOfPeriod": {
-            "type": "number"
-          },
-          "growthOperatingCashFlow": {
-            "type": "number"
-          },
-          "growthCapitalExpenditure": {
-            "type": "number"
-          },
-          "growthFreeCashFlow": {
-            "type": "number"
-          }
-        }
-      },
-      "FinancialRatios": {
-        "type": "object",
-        "properties": {
-          "symbol": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string"
-          },
-          "period": {
-            "type": "string"
-          },
-          "currentRatio": {
-            "type": "number"
-          },
-          "quickRatio": {
-            "type": "number"
-          },
-          "cashRatio": {
-            "type": "number"
-          },
-          "daysOfSalesOutstanding": {
-            "type": "number"
-          },
-          "daysOfInventoryOutstanding": {
-            "type": "number"
-          },
-          "operatingCycle": {
-            "type": "number"
-          },
-          "daysOfPayablesOutstanding": {
-            "type": "number"
-          },
-          "cashConversionCycle": {
-            "type": "number"
-          },
-          "grossProfitMargin": {
-            "type": "number"
-          },
-          "operatingProfitMargin": {
-            "type": "number"
-          },
-          "pretaxProfitMargin": {
-            "type": "number"
-          },
-          "netProfitMargin": {
-            "type": "number"
-          },
-          "effectiveTaxRate": {
-            "type": "number"
-          },
-          "returnOnAssets": {
-            "type": "number"
-          },
-          "returnOnEquity": {
-            "type": "number"
-          },
-          "returnOnCapitalEmployed": {
-            "type": "number"
-          },
-          "netIncomePerEBT": {
-            "type": "number"
-          },
-          "ebtPerEbit": {
-            "type": "number"
-          },
-          "ebitPerRevenue": {
-            "type": "number"
-          },
-          "debtRatio": {
-            "type": "number"
-          },
-          "debtEquityRatio": {
-            "type": "number"
-          },
-          "longTermDebtToCapitalization": {
-            "type": "number"
-          },
-          "totalDebtToCapitalization": {
-            "type": "number"
-          },
-          "interestCoverage": {
-            "type": "number"
-          },
-          "cashFlowToDebtRatio": {
-            "type": "number"
-          },
-          "companyEquityMultiplier": {
-            "type": "number"
-          },
-          "receivablesTurnover": {
-            "type": "number"
-          },
-          "payablesTurnover": {
-            "type": "number"
-          },
-          "inventoryTurnover": {
-            "type": "number"
-          },
-          "fixedAssetTurnover": {
-            "type": "number"
-          },
-          "assetTurnover": {
-            "type": "number"
-          },
-          "operatingCashFlowPerShare": {
-            "type": "number"
-          },
-          "freeCashFlowPerShare": {
-            "type": "number"
-          },
-          "cashPerShare": {
-            "type": "number"
-          },
-          "payoutRatio": {
-            "type": "number"
-          },
-          "operatingCashFlowSalesRatio": {
-            "type": "number"
-          },
-          "freeCashFlowOperatingCashFlowRatio": {
-            "type": "number"
-          },
-          "cashFlowCoverageRatios": {
-            "type": "number"
-          },
-          "shortTermCoverageRatios": {
-            "type": "number"
-          },
-          "capitalExpenditureCoverageRatio": {
-            "type": "number"
-          },
-          "dividendPaidAndCapexCoverageRatio": {
-            "type": "number"
-          },
-          "dividendPayoutRatio": {
-            "type": "number"
-          },
-          "priceBookValueRatio": {
-            "type": "number"
-          },
-          "priceToBookRatio": {
-            "type": "number"
-          },
-          "priceToSalesRatio": {
-            "type": "number"
-          },
-          "priceEarningsRatio": {
-            "type": "number"
-          },
-          "priceToFreeCashFlowsRatio": {
-            "type": "number"
-          },
-          "priceToOperatingCashFlowsRatio": {
-            "type": "number"
-          },
-          "priceCashFlowRatio": {
-            "type": "number"
-          },
-          "priceEarningsToGrowthRatio": {
-            "type": "number"
-          },
-          "priceSalesRatio": {
-            "type": "number"
-          },
-          "dividendYield": {
-            "type": "number"
-          },
-          "enterpriseValueMultiple": {
-            "type": "number"
-          },
-          "priceFairValue": {
-            "type": "number"
-          }
-        }
-      },
-      "EnterpriseValue": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "symbol": {
-            "type": "string"
-          },
-          "stockPrice": {
-            "type": "number"
-          },
-          "numberOfShares": {
-            "type": "integer"
-          },
-          "marketCapitalization": {
-            "type": "integer"
-          },
-          "minusCashAndCashEquivalents": {
-            "type": "integer"
-          },
-          "addTotalDebt": {
-            "type": "integer"
-          },
-          "enterpriseValue": {
-            "type": "integer"
-          }
-        }
-      },
-      "KeyMetrics": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "symbol": {
-            "type": "string"
-          },
-          "period": {
-            "type": "string"
-          },
-          "revenuePerShare": {
-            "type": "number"
-          },
-          "netIncomePerShare": {
-            "type": "number"
-          },
-          "operatingCashFlowPerShare": {
-            "type": "number"
-          },
-          "freeCashFlowPerShare": {
-            "type": "number"
-          },
-          "cashPerShare": {
-            "type": "number"
-          },
-          "bookValuePerShare": {
-            "type": "number"
-          },
-          "tangibleBookValuePerShare": {
-            "type": "number"
-          },
-          "shareholdersEquityPerShare": {
-            "type": "number"
-          },
-          "interestDebtPerShare": {
-            "type": "number"
-          },
-          "marketCap": {
-            "type": "number"
-          },
-          "enterpriseValue": {
-            "type": "number"
-          },
-          "peRatio": {
-            "type": "number"
-          },
-          "priceToSalesRatio": {
-            "type": "number"
-          },
-          "pocfratio": {
-            "type": "number"
-          },
-          "pfcfRatio": {
-            "type": "number"
-          },
-          "pbRatio": {
-            "type": "number"
-          },
-          "ptbRatio": {
-            "type": "number"
-          },
-          "evToSales": {
-            "type": "number"
-          },
-          "enterpriseValueOverEBITDA": {
-            "type": "number"
-          },
-          "evToOperatingCashFlow": {
-            "type": "number"
-          },
-          "evToFreeCashFlow": {
-            "type": "number"
-          },
-          "earningsYield": {
-            "type": "number"
-          },
-          "freeCashFlowYield": {
-            "type": "number"
-          },
-          "debtToEquity": {
-            "type": "number"
-          },
-          "debtToAssets": {
-            "type": "number"
-          },
-          "netDebtToEBITDA": {
-            "type": "number"
-          },
-          "currentRatio": {
-            "type": "number"
-          },
-          "interestCoverage": {
-            "type": "number"
-          },
-          "incomeQuality": {
-            "type": "number"
-          },
-          "dividendYield": {
-            "type": "number"
-          },
-          "payoutRatio": {
-            "type": "number"
-          },
-          "salesGeneralAndAdministrativeToRevenue": {
-            "type": "number"
-          },
-          "researchAndDdevelopementToRevenue": {
-            "type": "number"
-          },
-          "intangiblesToTotalAssets": {
-            "type": "number"
-          },
-          "capexToOperatingCashFlow": {
-            "type": "number"
-          },
-          "capexToRevenue": {
-            "type": "number"
-          },
-          "capexToDepreciation": {
-            "type": "number"
-          },
-          "stockBasedCompensationToRevenue": {
-            "type": "number"
-          },
-          "grahamNumber": {
-            "type": "number"
-          },
-          "roic": {
-            "type": "number"
-          },
-          "returnOnTangibleAssets": {
-            "type": "number"
-          },
-          "grahamNetNet": {
-            "type": "number"
-          },
-          "workingCapital": {
-            "type": "number"
-          },
-          "tangibleAssetValue": {
-            "type": "number"
-          },
-          "netCurrentAssetValue": {
-            "type": "number"
-          },
-          "investedCapital": {
-            "type": "number"
-          },
-          "averageReceivables": {
-            "type": "number"
-          },
-          "averagePayables": {
-            "type": "number"
-          },
-          "averageInventory": {
-            "type": "number"
-          },
-          "daysSalesOutstanding": {
-            "type": "number"
-          },
-          "daysPayablesOutstanding": {
-            "type": "number"
-          },
-          "daysOfInventoryOnHand": {
-            "type": "number"
-          },
-          "receivablesTurnover": {
-            "type": "number"
-          },
-          "payablesTurnover": {
-            "type": "number"
-          },
-          "inventoryTurnover": {
-            "type": "number"
-          },
-          "roe": {
-            "type": "number"
-          },
-          "capexPerShare": {
-            "type": "number"
-          }
-        }
-      },
-      "AnalystEstimates": {
-        "type": "object",
-        "properties": {
-          "symbol": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string"
-          },
-          "estimatedRevenueLow": {
-            "type": "integer"
-          },
-          "estimatedRevenueHigh": {
-            "type": "integer"
-          },
-          "estimatedRevenueAvg": {
-            "type": "integer"
-          },
-          "estimatedEbitdaLow": {
-            "type": "integer"
-          },
-          "estimatedEbitdaHigh": {
-            "type": "integer"
-          },
-          "estimatedEbitdaAvg": {
-            "type": "integer"
-          },
-          "estimatedEbitLow": {
-            "type": "integer"
-          },
-          "estimatedEbitHigh": {
-            "type": "integer"
-          },
-          "estimatedEbitAvg": {
-            "type": "integer"
-          },
-          "estimatedNetIncomeLow": {
-            "type": "integer"
-          },
-          "estimatedNetIncomeHigh": {
-            "type": "integer"
-          },
-          "estimatedNetIncomeAvg": {
-            "type": "integer"
-          },
-          "estimatedSgaExpenseLow": {
-            "type": "integer"
-          },
-          "estimatedSgaExpenseHigh": {
-            "type": "integer"
-          },
-          "estimatedSgaExpenseAvg": {
-            "type": "integer"
-          },
-          "estimatedEpsAvg": {
-            "type": "number"
-          },
-          "estimatedEpsHigh": {
-            "type": "number"
-          },
-          "estimatedEpsLow": {
-            "type": "number"
-          },
-          "numberAnalystEstimatedRevenue": {
-            "type": "integer"
-          },
-          "numberAnalystsEstimatedEps": {
-            "type": "integer"
-          }
-        }
-      },
-      "SharesFloat": {
-        "type": "object",
-        "properties": {
-          "symbol": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string"
-          },
-          "freeFloat": {
-            "type": "number"
-          },
-          "floatShares": {
-            "type": "number"
-          },
-          "outstandingShares": {
-            "type": "number"
-          },
-          "source": {
-            "type": "string"
           }
         }
       },
       "Historical": {
         "type": "object",
         "properties": {
+          "date": {
+            "type": "string"
+          },
+          "open": {
+            "type": "number"
+          },
+          "high": {
+            "type": "number"
+          },
           "low": {
+            "type": "number"
+          },
+          "close": {
             "type": "number"
           },
           "adjClose": {
@@ -5055,22 +2434,10 @@
           "change": {
             "type": "number"
           },
-          "open": {
-            "type": "number"
-          },
           "changePercent": {
             "type": "number"
           },
-          "close": {
-            "type": "number"
-          },
           "vwap": {
-            "type": "number"
-          },
-          "date": {
-            "type": "string"
-          },
-          "high": {
             "type": "number"
           }
         }
@@ -5079,7 +2446,7 @@
         "type": "object",
         "properties": {
           "symbol": {
-            "type": "string"
+            "readOnly": true
           },
           "historical": {
             "type": "array",
@@ -5089,202 +2456,20 @@
           }
         }
       },
-      "FinancialRatiosTTM": {
+      "SymbolSQL": {
         "type": "object",
         "properties": {
           "symbol": {
-            "type": "string"
-          },
-          "dividendYielTTM": {
-            "type": "number"
-          },
-          "dividendYielPercentageTTM": {
-            "type": "number"
-          },
-          "peRatioTTM": {
-            "type": "number"
-          },
-          "pegRatioTTM": {
-            "type": "number"
-          },
-          "payoutRatioTTM": {
-            "type": "number"
-          },
-          "currentRatioTTM": {
-            "type": "number"
-          },
-          "quickRatioTTM": {
-            "type": "number"
-          },
-          "cashRatioTTM": {
-            "type": "number"
-          },
-          "daysOfSalesOutstandingTTM": {
-            "type": "number"
-          },
-          "daysOfInventoryOutstandingTTM": {
-            "type": "number"
-          },
-          "operatingCycleTTM": {
-            "type": "number"
-          },
-          "daysOfPayablesOutstandingTTM": {
-            "type": "number"
-          },
-          "cashConversionCycleTTM": {
-            "type": "number"
-          },
-          "grossProfitMarginTTM": {
-            "type": "number"
-          },
-          "operatingProfitMarginTTM": {
-            "type": "number"
-          },
-          "pretaxProfitMarginTTM": {
-            "type": "number"
-          },
-          "netProfitMarginTTM": {
-            "type": "number"
-          },
-          "effectiveTaxRateTTM": {
-            "type": "number"
-          },
-          "returnOnAssetsTTM": {
-            "type": "number"
-          },
-          "returnOnEquityTTM": {
-            "type": "number"
-          },
-          "returnOnCapitalEmployedTTM": {
-            "type": "number"
-          },
-          "netIncomePerEBTTTM": {
-            "type": "number"
-          },
-          "ebtPerEbitTTM": {
-            "type": "number"
-          },
-          "ebitPerRevenueTTM": {
-            "type": "number"
-          },
-          "debtRatioTTM": {
-            "type": "number"
-          },
-          "debtEquityRatioTTM": {
-            "type": "number"
-          },
-          "longTermDebtToCapitalizationTTM": {
-            "type": "number"
-          },
-          "totalDebtToCapitalizationTTM": {
-            "type": "number"
-          },
-          "interestCoverageTTM": {
-            "type": "number"
-          },
-          "cashFlowToDebtRatioTTM": {
-            "type": "number"
-          },
-          "companyEquityMultiplierTTM": {
-            "type": "number"
-          },
-          "receivablesTurnoverTTM": {
-            "type": "number"
-          },
-          "payablesTurnoverTTM": {
-            "type": "number"
-          },
-          "inventoryTurnoverTTM": {
-            "type": "number"
-          },
-          "fixedAssetTurnoverTTM": {
-            "type": "number"
-          },
-          "assetTurnoverTTM": {
-            "type": "number"
-          },
-          "operatingCashFlowPerShareTTM": {
-            "type": "number"
-          },
-          "freeCashFlowPerShareTTM": {
-            "type": "number"
-          },
-          "cashPerShareTTM": {
-            "type": "number"
-          },
-          "operatingCashFlowSalesRatioTTM": {
-            "type": "number"
-          },
-          "freeCashFlowOperatingCashFlowRatioTTM": {
-            "type": "number"
-          },
-          "cashFlowCoverageRatiosTTM": {
-            "type": "number"
-          },
-          "shortTermCoverageRatiosTTM": {
-            "type": "number"
-          },
-          "capitalExpenditureCoverageRatioTTM": {
-            "type": "number"
-          },
-          "dividendPaidAndCapexCoverageRatioTTM": {
-            "type": "number"
-          },
-          "priceBookValueRatioTTM": {
-            "type": "number"
-          },
-          "priceToBookRatioTTM": {
-            "type": "number"
-          },
-          "priceToSalesRatioTTM": {
-            "type": "number"
-          },
-          "priceEarningsRatioTTM": {
-            "type": "number"
-          },
-          "priceToFreeCashFlowsRatioTTM": {
-            "type": "number"
-          },
-          "priceToOperatingCashFlowsRatioTTM": {
-            "type": "number"
-          },
-          "priceCashFlowRatioTTM": {
-            "type": "number"
-          },
-          "priceEarningsToGrowthRatioTTM": {
-            "type": "number"
-          },
-          "priceSalesRatioTTM": {
-            "type": "number"
-          },
-          "dividendYieldTTM": {
-            "type": "number"
-          },
-          "enterpriseValueMultipleTTM": {
-            "type": "number"
-          },
-          "priceFairValueTTM": {
-            "type": "number"
-          },
-          "dividendPerShareTTM": {
-            "type": "number"
-          }
-        }
-      },
-      "Symbol": {
-        "type": "object",
-        "properties": {
-          "exchange": {
-            "type": "string"
-          },
-          "symbol": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
-          "price": {
-            "type": "number"
+          "exchange": {
+            "type": "string",
+            "nullable": true
           }
         }
       }
