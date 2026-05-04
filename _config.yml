@@ -32,6 +32,7 @@ kramdown:
   auto_ids: true
 
 permalink: /:year/:month/:day/:title/
+future: true  # don't skip posts whose time is slightly ahead of build time
 
 # SEO / social
 twitter:
