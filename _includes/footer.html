@@ -1,16 +1,12 @@
 <footer class="site-footer" role="contentinfo">
-  <div class="wrap">
-    <div class="site-footer__bar">
-      <div class="site-footer__keys">
-        <a href="{{ '/' | relative_url }}"><b>F1</b>Home</a>
-        <a href="{{ '/tags/' | relative_url }}"><b>F2</b>Tags</a>
-        <a href="{{ '/search/' | relative_url }}"><b>F3</b>Search</a>
-        <a href="{{ '/about/' | relative_url }}"><b>F4</b>About</a>
-        <a href="{{ '/feed.xml' | relative_url }}"><b>F5</b>RSS</a>
-      </div>
-      <div class="site-footer__right">
-        NODE 01 · © {{ 'now' | date: '%Y' }} {{ site.author | upcase }}
-      </div>
-    </div>
+  <div class="site-footer__keys">
+    <a href="{{ '/' | relative_url }}"><b>F1</b>Home</a>
+    <a href="{{ '/tags/' | relative_url }}"><b>F2</b>Tags</a>
+    <a href="{{ '/search/' | relative_url }}"><b>F3</b>Search</a>
+    <a href="{{ '/about/' | relative_url }}"><b>F4</b>About</a>
+    <a href="{{ '/feed.xml' | relative_url }}"><b>F5</b>RSS</a>
+  </div>
+  <div class="site-footer__right">
+    NODE 01 · © {{ 'now' | date: '%Y' }} {{ site.author | upcase }}
   </div>
 </footer>

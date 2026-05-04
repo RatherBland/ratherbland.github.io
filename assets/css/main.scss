@@ -536,27 +536,17 @@ kbd {
 }
 .page-title::before { content: "■ "; color: var(--c-yellow); }
 
-/* --- footer (fixed statusbar, bounded to the 80ch screen column) --- */
+/* --- footer (fixed statusbar) --- */
 .site-footer {
   position: fixed;
   left: 0; right: 0; bottom: 0;
-  z-index: 60;
-  /* No background on the outer element — we want the black terminal border
-     to show to the left and right of the centered column. */
-  background: transparent;
-  pointer-events: none; /* let clicks pass through the black gutter */
-}
-.site-footer .wrap {
-  padding: 0;
-}
-.site-footer__bar {
-  pointer-events: auto;
   background: var(--bar-cyan-bg);
   color: var(--bar-cyan-fg);
   padding: 0 0.75rem;
   font-size: 0.9rem;
   line-height: 1.55;
   letter-spacing: 0;
+  z-index: 60;
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
@@ -612,7 +602,7 @@ kbd {
 .site-footer-block a { color: var(--link); }
 
 @media (max-width: 560px) {
-  .site-footer__bar { font-size: 0.82rem; padding: 0 0.5rem; }
+  .site-footer { font-size: 0.82rem; padding: 0 0.5rem; }
   .site-footer__keys { gap: 0.35rem; }
   .site-footer__right { display: none; }
   body { padding-bottom: 1.85rem; }
