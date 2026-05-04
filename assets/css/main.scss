@@ -1,0 +1,342 @@
+---
+# Front matter present (even empty) so Jekyll processes this file through Sass.
+---
+
+/* =========================================================================
+   Misha's Blog — handwritten theme
+   Mono-forward, reserved, light+dark via prefers-color-scheme.
+   ========================================================================= */
+
+:root {
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* light (default) */
+  --bg: #f7f5ef;
+  --bg-raised: #efece3;
+  --text: #1b1b1e;
+  --muted: #6b6b70;
+  --rule: #d9d4c5;
+  --accent: #8b5a2b;
+  --accent-hover: #6e4620;
+  --selection: #e8d9bf;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0f11;
+    --bg-raised: #17181b;
+    --text: #d6d3c9;
+    --muted: #8a8880;
+    --rule: #2a2b2e;
+    --accent: #c9935a;
+    --accent-hover: #e0a972;
+    --selection: #3a2e1f;
+  }
+}
+
+/* --- reset-ish --- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.65;
+  font-feature-settings: "liga" 0;   /* keep things crisp & code-like */
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--selection); }
+
+/* --- layout --- */
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.site-main {
+  padding: 2.5rem 0 4rem;
+  min-height: 60vh;
+}
+
+/* --- header --- */
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  padding: 1.25rem 0;
+}
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.site-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-decoration: none;
+}
+.site-title::before { content: "~/ "; color: var(--muted); }
+
+.site-nav {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.85rem;
+}
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.site-nav a:hover { color: var(--accent); }
+
+/* --- links --- */
+a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.1s ease, text-decoration-color 0.1s ease;
+}
+a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+/* --- headings --- */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 2.25rem 0 1rem;
+}
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1.05rem; }
+h4, h5, h6 { font-size: 1rem; color: var(--muted); }
+
+/* heading anchors (kramdown generates auto ids) */
+.post-content :is(h2, h3, h4) {
+  scroll-margin-top: 1rem;
+}
+
+/* --- body content --- */
+p, ul, ol, blockquote, pre, table, figure {
+  margin: 0 0 1.15rem;
+}
+ul, ol { padding-left: 1.5rem; }
+li { margin-bottom: 0.25rem; }
+
+blockquote {
+  border-left: 2px solid var(--accent);
+  margin-left: 0;
+  padding: 0.1rem 0 0.1rem 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.5rem 0;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- tables --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+th, td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+}
+th { font-weight: 600; }
+
+/* --- code --- */
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+}
+:not(pre) > code {
+  background: var(--bg-raised);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  border: 1px solid var(--rule);
+}
+pre {
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+pre > code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+/* --- home / post list --- */
+.home-intro { margin-bottom: 2rem; color: var(--muted); }
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.post-list__item {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--rule);
+  align-items: baseline;
+}
+.post-list__item:last-child { border-bottom: 0; }
+.post-list__date {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.post-list__title {
+  color: var(--text);
+  text-decoration: none;
+}
+.post-list__title:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 520px) {
+  .post-list__item {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+    padding: 0.75rem 0;
+  }
+}
+
+/* --- post page --- */
+.post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+.post-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.6rem;
+}
+.post-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.post-meta .sep { margin: 0 0.5rem; opacity: 0.6; }
+.post-tags a { color: var(--muted); text-decoration: none; }
+.post-tags a:hover { color: var(--accent); }
+
+/* --- post nav --- */
+.post-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+}
+.post-nav a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: var(--text);
+  padding: 0.5rem 0;
+}
+.post-nav__next { text-align: right; grid-column: 2; }
+.post-nav__prev { grid-column: 1; }
+.post-nav__label { color: var(--muted); font-size: 0.8rem; }
+.post-nav__title { color: var(--text); }
+.post-nav a:hover .post-nav__title { color: var(--accent); }
+
+@media (max-width: 520px) {
+  .post-nav { grid-template-columns: 1fr; }
+  .post-nav__next, .post-nav__prev { grid-column: 1; text-align: left; }
+}
+
+/* --- TOC (kramdown renders into <ul id="markdown-toc">) --- */
+#markdown-toc {
+  font-size: 0.85rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.75rem 1rem 0.75rem 2rem;
+  margin: 0 0 2rem;
+  color: var(--muted);
+}
+#markdown-toc::before {
+  content: "Contents";
+  display: block;
+  margin-left: -1rem;
+  margin-bottom: 0.4rem;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+}
+#markdown-toc a { color: var(--text); text-decoration: none; }
+#markdown-toc a:hover { color: var(--accent); }
+#markdown-toc ul { margin: 0.2rem 0; padding-left: 1rem; list-style: "— "; }
+#markdown-toc li { margin: 0.15rem 0; }
+
+/* --- tags page --- */
+.tag-cloud {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.tag-cloud a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.tag-cloud a:hover { color: var(--accent); }
+
+.tag-section { margin-bottom: 2.5rem; scroll-margin-top: 1rem; }
+.tag-heading {
+  font-size: 1rem;
+  color: var(--accent);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* --- page --- */
+.page-title { font-size: 1.5rem; margin-top: 0; }
+
+/* --- footer --- */
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem 0 2rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.site-footer p { margin: 0; }
+.site-footer a { color: var(--muted); }
+.site-footer a:hover { color: var(--accent); }
+
+/* --- syntax highlighting (Rouge) --- */
+@import "syntax";

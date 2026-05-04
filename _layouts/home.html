@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<section class="home">
+  {%- if page.content and page.content != "" -%}
+  <div class="home-intro">
+    {{ content }}
+  </div>
+  {%- endif -%}
+
+  <ol class="post-list" reversed>
+    {%- for post in site.posts -%}
+    <li class="post-list__item">
+      <time class="post-list__date" datetime="{{ post.date | date_to_xmlschema }}">
+        {{ post.date | date: "%Y-%m-%d" }}
+      </time>
+      <a class="post-list__title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+    </li>
+    {%- endfor -%}
+  </ol>
+</section>

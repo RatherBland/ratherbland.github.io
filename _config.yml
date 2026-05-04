@@ -1,19 +1,17 @@
 title: Misha's Blog
 author: Misha
 description: >-
-  Personal blog of Misha — notes, thoughts, and the occasional deep dive.
+  Personal blog of Misha — notes on security engineering, infrastructure,
+  and the occasional deep dive.
 url: "https://blog.misha.casa"
 baseurl: ""
 
-theme: minima
+# No `theme:` — we ship our own layouts/includes/assets.
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-
-minima:
-  skin: auto
-  date_format: "%b %-d, %Y"
 
 # Default front matter
 defaults:
@@ -27,7 +25,20 @@ defaults:
 # Build settings
 markdown: kramdown
 highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  toc_levels: 2..3
+  auto_ids: true
+
 permalink: /:year/:month/:day/:title/
+
+# SEO / social
+twitter:
+  username: ""
+social:
+  name: Misha
+  links: []
 
 # Exclude from processing
 exclude:

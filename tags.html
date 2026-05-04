@@ -1,0 +1,41 @@
+---
+layout: default
+title: Tags
+permalink: /tags/
+---
+<section class="tags-index">
+  <h1 class="page-title">Tags</h1>
+
+  {%- assign rawtags = "" -%}
+  {%- for post in site.posts -%}
+    {%- for tag in post.tags -%}
+      {%- assign rawtags = rawtags | append: "," | append: tag -%}
+    {%- endfor -%}
+  {%- endfor -%}
+  {%- assign tags = rawtags | split: "," | uniq | sort -%}
+
+  <ul class="tag-cloud">
+    {%- for tag in tags -%}
+      {%- if tag != "" -%}
+      <li><a href="#{{ tag | slugify }}">#{{ tag }}</a></li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+
+  {%- for tag in tags -%}
+    {%- if tag == "" -%}{%- continue -%}{%- endif -%}
+    <section class="tag-section" id="{{ tag | slugify }}">
+      <h2 class="tag-heading">#{{ tag }}</h2>
+      <ol class="post-list" reversed>
+        {%- for post in site.posts -%}
+          {%- if post.tags contains tag -%}
+          <li class="post-list__item">
+            <time class="post-list__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+            <a class="post-list__title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ol>
+    </section>
+  {%- endfor -%}
+</section>
