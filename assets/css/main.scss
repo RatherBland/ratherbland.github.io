@@ -11,9 +11,9 @@
 :root {
   color-scheme: dark;
 
-  /* Primary face: IBM Plex Mono — legible mono with a faint terminal feel.
-     (VT323 is still loaded in case we want it for decorative bits later.) */
-  --font-term: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, "VT323", monospace;
+  /* Chrome font: VT323 pixel terminal. Post/page BODY text uses Plex Mono
+     (--font-code) for readability — see .post-content / .page-content below. */
+  --font-term: "VT323", "Perfect DOS VGA 437", ui-monospace, monospace;
   --font-code: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* DOS 16-colour palette */
@@ -57,14 +57,15 @@
 
 /* --- reset --- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; font-size: 15px; }
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-term);
-  /* Matches the mockup — 15px Plex Mono reads well without feeling modern. */
-  font-size: 15px;
+  /* Matches the mockup — 15px Plex Mono reads well without feeling modern.
+     Base is set on <html> so rem units resolve against 15px consistently. */
+  font-size: 1rem;
   line-height: 1.3;
   font-feature-settings: "liga" 0;
   -webkit-font-smoothing: antialiased;
@@ -517,6 +518,8 @@ kbd {
 
 .post-content {
   padding: 0 0.25rem;
+  /* Readable font for actual prose — VT323 is chrome-only. */
+  font-family: var(--font-code);
 }
 .post-content p { color: var(--text); }
 .post-content strong, .post-content b { color: var(--text-hi); }
@@ -625,6 +628,10 @@ kbd {
   letter-spacing: 0.05em;
 }
 .page-title::before { content: "■ "; color: var(--c-yellow); }
+.page-content {
+  /* Same as .post-content — readable prose, VT323 stays chrome-only. */
+  font-family: var(--font-code);
+}
 
 /* --- footer (fixed statusbar) --- */
 .site-footer {
