@@ -1,0 +1,40 @@
+title: Misha's Blog
+author: Misha
+description: >-
+  Personal blog of Misha — notes, thoughts, and the occasional deep dive.
+url: "https://blog.misha.casa"
+baseurl: ""
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+minima:
+  skin: auto
+  date_format: "%b %-d, %Y"
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Misha
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - node_modules
+  - README.md
