@@ -55,6 +55,12 @@ tags: [tag1, tag2]
 
 Optional front-matter extras:
 
+- `description:` — a one- or two-sentence summary. Shown under the title on
+  the home page and `/tags/`, and used by `jekyll-seo-tag` for
+  `<meta name="description">` and Open Graph previews. If omitted, the first
+  paragraph of the post is used as a fallback (truncated to ~180 chars). You
+  can also force a cut point in the body by inserting `<!--more-->` — text
+  before that marker becomes the excerpt.
 - `redirect_from: [/old/path/]` — rename-proofs your URLs (jekyll-redirect-from).
 - `image: /assets/img/foo.png` — used by jekyll-seo-tag for Open Graph previews.
 

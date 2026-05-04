@@ -4,6 +4,9 @@ title: "Hello, world"
 date: 2026-05-04 12:00:00 +0000
 categories: [meta]
 tags: [meta, jekyll]
+description: >-
+  A smoke test for the new blog: confirm Jekyll builds, GitHub Pages serves,
+  and the theme doesn't embarrass itself.
 ---
 
 This is the first post on the blog — mostly a smoke test to confirm Jekyll

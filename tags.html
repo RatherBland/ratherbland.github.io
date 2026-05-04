@@ -31,7 +31,13 @@ permalink: /tags/
           {%- if post.tags contains tag -%}
           <li class="post-list__item">
             <time class="post-list__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
-            <a class="post-list__title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+            <div class="post-list__body">
+              <a class="post-list__title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+              {%- assign summary = post.description | default: post.excerpt | strip_html | strip_newlines | normalize_whitespace -%}
+              {%- if summary and summary != "" -%}
+              <p class="post-list__excerpt">{{ summary | truncate: 160 }}</p>
+              {%- endif -%}
+            </div>
           </li>
           {%- endif -%}
         {%- endfor -%}

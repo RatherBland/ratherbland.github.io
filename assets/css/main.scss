@@ -201,7 +201,7 @@ pre > code {
   display: grid;
   grid-template-columns: 6rem 1fr;
   gap: 1rem;
-  padding: 0.5rem 0;
+  padding: 0.65rem 0;
   border-bottom: 1px dashed var(--rule);
   align-items: baseline;
 }
@@ -212,6 +212,12 @@ pre > code {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+.post-list__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
 .post-list__title {
   color: var(--text);
   text-decoration: none;
@@ -219,12 +225,18 @@ pre > code {
 .post-list__title:hover {
   color: var(--accent);
 }
+.post-list__excerpt {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
 
 @media (max-width: 520px) {
   .post-list__item {
     grid-template-columns: 1fr;
-    gap: 0.1rem;
-    padding: 0.75rem 0;
+    gap: 0.15rem;
+    padding: 0.85rem 0;
   }
 }
 
