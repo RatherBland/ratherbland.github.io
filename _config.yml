@@ -40,7 +40,11 @@ twitter:
   username: ""
 social:
   name: Misha
-  links: []
+  links:
+    - label: github
+      url: https://github.com/RatherBland
+    - label: linkedin
+      url: https://www.linkedin.com/in/guy-bland-70403521b/
 
 # Giscus comments (https://giscus.app).
 # Fill repo_id and category_id from https://giscus.app/ once Discussions are
