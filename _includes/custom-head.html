@@ -1,0 +1,9 @@
+{%- comment -%}
+  Injected into <head> by minima's default layout.
+  Umami analytics — privacy-friendly, cookieless.
+  Skipped on `jekyll serve` (JEKYLL_ENV=development) so local previews
+  don't pollute stats.
+{%- endcomment -%}
+{%- if jekyll.environment == "production" -%}
+<script defer src="https://cloud.umami.is/script.js" data-website-id="138f0720-e065-4245-a750-2864ea2cc837"></script>
+{%- endif -%}
