@@ -98,7 +98,7 @@ body::after {
 
 /* --- layout --- */
 .wrap {
-  max-width: 80ch;
+  max-width: 104ch;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -114,7 +114,7 @@ body::after {
   z-index: 2;
   /* Match .wrap so the topbar + nav line up with the body column
      instead of stretching across the full viewport. */
-  max-width: 80ch;
+  max-width: 104ch;
   margin: 0 auto;
   padding: 0 1rem;
 }
