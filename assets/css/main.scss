@@ -153,7 +153,7 @@ body::after {
   display: inline-block;
   /* Plex Mono keeps the ANSI block glyphs uniform width across platforms. */
   font-family: var(--font-code);
-  font-size: 0.6rem;
+  font-size: 0.85rem;
   line-height: 1.02;
   color: var(--accent);
   text-shadow: 0 0 10px rgba(255,255,85,0.6), 0 0 2px rgba(255,255,85,0.8);
@@ -165,8 +165,8 @@ body::after {
   border: 0;
   padding: 0;
 }
-@media (min-width: 480px) { .banner pre { font-size: 0.72rem; } }
-@media (min-width: 640px) { .banner pre { font-size: 0.85rem; } }
+@media (min-width: 480px) { .banner pre { font-size: 1.05rem; } }
+@media (min-width: 640px) { .banner pre { font-size: 1.35rem; } }
 .banner__strap {
   display: block;
   margin-top: 0.35rem;
@@ -194,6 +194,70 @@ body::after {
   border: 0;
   padding: 0;
 }
+
+/* --- home-only BBS atmosphere: node stats, press-any-key, DOS prompt --- */
+.node-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 1rem 0;
+  border: 1px solid var(--rule);
+  font-family: var(--font-code);
+}
+.node-stats .cell {
+  padding: 0.25rem 0.75rem;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.node-stats .cell:nth-child(2n) { border-right: 0; }
+.node-stats .cell:nth-last-child(-n+2) { border-bottom: 0; }
+.node-stats .cell span { color: var(--muted); }
+.node-stats .cell b { color: var(--ok); font-weight: 400; }
+.node-stats .cell b.warn { color: var(--accent); }
+@media (max-width: 520px) {
+  .node-stats { grid-template-columns: 1fr; }
+  .node-stats .cell { border-right: 0; }
+}
+
+.ascii-break {
+  text-align: center;
+  color: var(--tag);
+  margin: 1rem 0;
+  font-family: var(--font-code);
+  font-size: 0.82rem;
+  line-height: 1;
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.dos-prompt {
+  margin: 1.25rem 0 0;
+  padding: 0.3rem 0.75rem;
+  background: var(--c-black);
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-code);
+  font-size: 0.92rem;
+}
+.dos-prompt .p1 { color: var(--accent); }
+.dos-prompt .p2 { color: var(--ok); }
+.dos-prompt .cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background: var(--ok);
+  vertical-align: text-bottom;
+  animation: dos-blink 1s steps(2) infinite;
+  margin-left: 0.2em;
+}
+@keyframes dos-blink { 50% { opacity: 0; } }
 
 /* Main menu: vertical stacked list, lightbar selection, F-key feel. */
 .site-nav {

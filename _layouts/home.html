@@ -35,6 +35,31 @@ layout: default
     {%- endfor -%}
   </ol>
 
+  {%- comment -%}
+    Node stats: real values for post count and build timestamp; the rest
+    are flavour — this is a web log dressed as a BBS, not an actual BBS.
+  {%- endcomment -%}
+  {%- assign posts_padded = site.posts.size | prepend: "00000" | slice: -5, 5 -%}
+  <p class="section-head">NODE STATISTICS</p>
+  <div class="node-stats">
+    <div class="cell"><span>total posts</span><b>{{ posts_padded }}</b></div>
+    <div class="cell"><span>total users</span><b>01337</b></div>
+    <div class="cell"><span>last caller</span><b>@joey.bbs</b></div>
+    <div class="cell"><span>calls today</span><b>00042</b></div>
+    <div class="cell"><span>uptime</span><b>412d 04h</b></div>
+    <div class="cell"><span>current node</span><b>01 of 01</b></div>
+    <div class="cell"><span>last build</span><b>{{ site.time | date: "%Y-%m-%d %H:%M" }}</b></div>
+    <div class="cell"><span>sysop</span><b>{{ site.author | upcase }}</b></div>
+  </div>
+
+  <pre class="ascii-break" aria-hidden="true">──────────────────────────  ─  ─  ─  ──────────────────────────
+                       press any key to continue
+──────────────────────────  ─  ─  ─  ──────────────────────────</pre>
+
+  <div class="dos-prompt">
+    <span class="p1">C:\{{ site.author | upcase }}&gt;</span> <span class="p2">menu</span><span class="cursor" aria-hidden="true"></span>
+  </div>
+
   <footer class="site-footer-block">
     {%- if site.social.links and site.social.links.size > 0 -%}
     <ul class="site-footer-block__social" aria-label="Social links">
