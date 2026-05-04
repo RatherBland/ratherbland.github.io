@@ -161,10 +161,13 @@ body::after {
   white-space: pre;
   text-align: left;
   letter-spacing: 0;
-  /* Override default <pre> chrome — the ASCII art is the visual, not the box. */
+  /* Override default <pre> chrome — the ASCII art is the visual, not the box.
+     overflow must be reset because the global `pre` rule sets overflow-x: auto,
+     which implicitly forces overflow-y: auto and produces a vertical scrollbar. */
   background: transparent;
   border: 0;
   padding: 0;
+  overflow: visible;
 }
 @media (min-width: 480px) { .banner pre { font-size: 1.05rem; } }
 @media (min-width: 640px) { .banner pre { font-size: 1.35rem; } }
