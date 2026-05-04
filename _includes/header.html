@@ -11,12 +11,15 @@
   {%- if page.url == "/" -%}
   <div class="banner" aria-hidden="true">
 <pre>
- ███╗   ███╗██╗███████╗██╗  ██╗ █████╗
- ████╗ ████║██║██╔════╝██║  ██║██╔══██╗
- ██╔████╔██║██║███████╗███████║███████║
- ██║╚██╔╝██║██║╚════██║██╔══██║██╔══██║
- ██║ ╚═╝ ██║██║███████║██║  ██║██║  ██║
- ╚═╝     ╚═╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
+ ███▄ ▄███▓ ██▓  ██████  ██░ ██  ▄▄▄
+▓██▒▀█▀ ██▒▓██▒▒██    ▒ ▓██░ ██▒▒████▄
+▓██    ▓██░▒██▒░ ▓██▄   ▒██▀▀██░▒██  ▀█▄
+▒██    ▒██ ░██░  ▒   ██▒░▓█ ░██ ░██▄▄▄▄██
+▒██▒   ░██▒░██░▒██████▒▒░▓█▒░██▓ ▓█   ▓██▒
+░ ▒░   ░  ░░▓  ▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒ ▒▒   ▓▒█░
+░  ░      ░ ▒ ░░ ░▒  ░ ░ ▒ ░▒░ ░  ▒   ▒▒ ░
+░      ░    ▒ ░░  ░  ░   ░  ░░ ░  ░   ▒
+       ░    ░        ░   ░  ░  ░      ░  ░
 </pre>
     <span class="banner__strap">welcome to misha-net</span>
   </div>
@@ -27,27 +30,27 @@
     <ul class="site-nav">
       <li>
         <a href="{{ '/' | relative_url }}" {% if u == "/" %}class="active"{% endif %}>
-          <span class="k">[1]</span><span>Read the Weblog</span><span class="c">home</span>
+          <span class="k">[1]</span><span class="l">Read the Weblog</span><span class="c">posts, newest first</span>
         </a>
       </li>
       <li>
         <a href="{{ '/tags/' | relative_url }}" {% if u contains "/tags" %}class="active"{% endif %}>
-          <span class="k">[2]</span><span>Message Base</span><span class="c">tags</span>
+          <span class="k">[2]</span><span class="l">Message Base (tags)</span><span class="c">browse by topic</span>
         </a>
       </li>
       <li>
         <a href="{{ '/search/' | relative_url }}" {% if u contains "/search" %}class="active"{% endif %}>
-          <span class="k">[3]</span><span>Full-Text Search</span><span class="c">search</span>
+          <span class="k">[3]</span><span class="l">Full-Text Search</span><span class="c">pagefind index</span>
         </a>
       </li>
       <li>
         <a href="{{ '/about/' | relative_url }}" {% if u contains "/about" %}class="active"{% endif %}>
-          <span class="k">[4]</span><span>About the SYSOP</span><span class="c">about</span>
+          <span class="k">[4]</span><span class="l">About the SYSOP</span><span class="c">who's running this</span>
         </a>
       </li>
       <li>
         <a href="{{ '/feed.xml' | relative_url }}">
-          <span class="k">[5]</span><span>Subscribe (RSS)</span><span class="c">feed</span>
+          <span class="k">[5]</span><span class="l">Subscribe (RSS / Atom)</span><span class="c">feed.xml</span>
         </a>
       </li>
     </ul>
