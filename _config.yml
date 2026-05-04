@@ -12,6 +12,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-redirect-from
 
 # Default front matter
 defaults:
@@ -40,6 +41,19 @@ twitter:
 social:
   name: Misha
   links: []
+
+# Giscus comments (https://giscus.app).
+# Fill repo_id and category_id from https://giscus.app/ once Discussions are
+# enabled on the repo. While these are "FILL_ME_IN" the widget stays hidden.
+giscus:
+  repo: "RatherBland/ratherbland.github.io"
+  repo_id: "FILL_ME_IN"
+  category: "General"
+  category_id: "FILL_ME_IN"
+  mapping: "pathname"
+  theme: "preferred_color_scheme"
+  reactions_enabled: "1"
+  input_position: "top"
 
 # Exclude from processing
 exclude:

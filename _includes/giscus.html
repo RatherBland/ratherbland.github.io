@@ -1,0 +1,28 @@
+{%- comment -%}
+  Giscus comments, rendered only when repo_id and category_id are set in
+  _config.yml. To enable:
+    1. Enable Discussions on the repo (Settings → Features → Discussions).
+    2. Install the giscus GitHub App: https://github.com/apps/giscus
+    3. Visit https://giscus.app/, enter the repo, pick a category.
+    4. Copy the data-repo-id and data-category-id into _config.yml.
+{%- endcomment -%}
+{%- assign g = site.giscus -%}
+{%- if g and g.repo_id != "FILL_ME_IN" and g.category_id != "FILL_ME_IN" -%}
+<section class="comments" aria-label="Comments">
+  <h2 class="comments__heading">Comments</h2>
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ g.repo }}"
+          data-repo-id="{{ g.repo_id }}"
+          data-category="{{ g.category }}"
+          data-category-id="{{ g.category_id }}"
+          data-mapping="{{ g.mapping | default: 'pathname' }}"
+          data-strict="0"
+          data-reactions-enabled="{{ g.reactions_enabled | default: '1' }}"
+          data-emit-metadata="0"
+          data-input-position="{{ g.input_position | default: 'top' }}"
+          data-theme="{{ g.theme | default: 'preferred_color_scheme' }}"
+          data-lang="en"
+          crossorigin="anonymous"
+          async></script>
+</section>
+{%- endif -%}

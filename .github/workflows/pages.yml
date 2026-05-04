@@ -1,0 +1,85 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one Pages deploy at a time; cancel older in-flight runs.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true  # runs `bundle install` and caches gems
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build Jekyll
+        env:
+          JEKYLL_ENV: production
+        run: |
+          bundle exec jekyll build \
+            --baseurl "${{ steps.pages.outputs.base_path }}"
+
+      # Copy every post's raw markdown to the same path as its HTML permalink,
+      # with a `.md` extension. A reader (or LLM) can append `.md` to any
+      # post URL to grab the source. Front matter is preserved intentionally —
+      # it's useful structured metadata.
+      - name: Expose raw markdown at <permalink>.md
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          for f in _posts/*.md; do
+            base=$(basename "$f" .md)
+            year=${base:0:4}
+            month=${base:5:2}
+            day=${base:8:2}
+            slug=${base:11}
+            dest_dir="_site/${year}/${month}/${day}"
+            mkdir -p "$dest_dir"
+            cp "$f" "${dest_dir}/${slug}.md"
+          done
+          echo "Raw markdown copies:"
+          find _site -maxdepth 5 -name "*.md" | sort
+
+      - name: Setup Node (for Pagefind)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build Pagefind search index
+        run: npx -y pagefind --site _site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

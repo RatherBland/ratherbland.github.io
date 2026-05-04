@@ -6,25 +6,39 @@ Personal blog at [blog.misha.casa](https://blog.misha.casa), built with
 ## Structure
 
 ```
-_config.yml               site config (no theme — ours is in-repo)
-_layouts/
-  default.html            base page shell (<head>, header, footer)
-  home.html               index — reverse-chron post list
-  page.html               static pages (e.g. /about/)
-  post.html               post view — meta, TOC slot, prev/next
-_includes/
-  head.html               <head>, fonts, analytics
-  header.html             site nav
-  footer.html             site footer
-assets/css/
-  main.scss               theme styles
-  _syntax.scss            Rouge syntax colours (light + dark)
+_config.yml               site config
+.github/workflows/
+  pages.yml               build + Pagefind index + raw-markdown copy + deploy
+_layouts/                 default / home / page / post
+_includes/                head / header / footer / giscus
+_sass/
+  syntax.scss             Rouge syntax colours (light + dark)
+assets/
+  css/main.scss           theme styles
+  js/copy-code.js         copy-to-clipboard buttons on <pre>
 _posts/                   posts — YYYY-MM-DD-slug.md
 tags.html                 /tags/ — index + per-tag sections
+search.html               /search/ — Pagefind-powered
 index.md                  home
 about.md                  /about/
 CNAME                     custom domain
 ```
+
+## How the site is built
+
+We use a **GitHub Actions workflow** (not the default Pages builder) so we
+can run modern Jekyll 4, Pagefind, and a small post-build step. On every push
+to `main`:
+
+1. `bundle exec jekyll build` renders the site into `_site/`.
+2. A shell loop copies each `_posts/*.md` to its permalink path with a `.md`
+   extension — so `https://blog.misha.casa/2026/05/04/hello-world/` also has a
+   raw source at `.../hello-world.md`. Handy for LLMs / agents / scrapers.
+3. Pagefind indexes the built HTML and drops its assets at `/pagefind/`.
+4. The `_site` directory is uploaded and deployed to Pages.
+
+To enable: GitHub → Settings → Pages → Build and deployment → Source =
+**GitHub Actions**.
 
 ## Adding a post
 
@@ -39,25 +53,37 @@ tags: [tag1, tag2]
 ---
 ```
 
-Then write Markdown below. To insert a table of contents at the top of a post,
-drop this just after the intro paragraph (kramdown generates it):
+Optional front-matter extras:
+
+- `redirect_from: [/old/path/]` — rename-proofs your URLs (jekyll-redirect-from).
+- `image: /assets/img/foo.png` — used by jekyll-seo-tag for Open Graph previews.
+
+To insert a table of contents at the top of a post, drop this just after the
+intro paragraph:
 
 ```markdown
 * toc
 {:toc}
 ```
 
-Commit and push to `main`; GitHub Pages rebuilds automatically.
+## Enabling comments (giscus)
+
+1. Enable Discussions on the repo: **Settings → Features → Discussions**.
+2. Install the giscus GitHub App: <https://github.com/apps/giscus>.
+3. Go to <https://giscus.app/>, enter `RatherBland/ratherbland.github.io`, pick
+   a Discussion category (a "General" or "Announcements" one works).
+4. Copy the generated `data-repo-id` and `data-category-id` values into the
+   `giscus:` block in `_config.yml`, replacing `FILL_ME_IN`.
+5. Push. Comments appear under every post.
 
 ## Theme notes
 
-- Typography: IBM Plex Mono throughout (loaded from Google Fonts).
+- Typography: IBM Plex Mono throughout.
 - Dark mode is automatic via `prefers-color-scheme` — no toggle.
-- Colors, spacing, and syntax highlighting all live in `assets/css/main.scss`
-  and `assets/css/_syntax.scss`. Both use CSS custom properties so retheming
-  is a matter of editing the `:root` blocks.
-- Analytics: Umami, injected in `_includes/head.html`, gated on
-  `jekyll.environment == "production"` so local previews don't pollute stats.
+- Colors, spacing, and syntax highlighting live in `assets/css/main.scss` and
+  `_sass/syntax.scss`. Both use CSS custom properties so retheming = edit
+  `:root`.
+- Analytics: Umami, injected in `_includes/head.html`, production-only.
 
 ## Local preview (optional)
 
@@ -67,4 +93,11 @@ Requires Ruby 3.x and Bundler:
 bundle install
 bundle exec jekyll serve --livereload
 # -> http://127.0.0.1:4000
+```
+
+Search won't work locally unless you also run Pagefind:
+
+```sh
+bundle exec jekyll build
+npx -y pagefind --site _site --serve
 ```
