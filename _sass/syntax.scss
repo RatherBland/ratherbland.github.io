@@ -1,39 +1,26 @@
 /* =========================================================================
-   Rouge syntax theme — themed via CSS variables so it adapts to
-   light / dark automatically. Reserved palette, no bright reds/greens.
+   Rouge syntax theme — DOS 16-colour BBS palette.
+   Bright on black; intentionally high contrast.
    ========================================================================= */
 
 :root {
-  --syn-comment: #8a8378;
-  --syn-keyword: #7a3a1a;
-  --syn-string:  #5a6a2c;
-  --syn-number:  #6e4080;
-  --syn-func:    #2a5a7a;
-  --syn-type:    #6a4a2a;
-  --syn-op:      #5a5a5a;
-  --syn-err:     #a03030;
+  --syn-comment: #55ffff;   /* light cyan */
+  --syn-keyword: #ffff55;   /* yellow */
+  --syn-string:  #55ff55;   /* light green */
+  --syn-number:  #ff55ff;   /* light magenta */
+  --syn-func:    #ffffff;   /* white */
+  --syn-type:    #aa5500;   /* brown */
+  --syn-op:      #aaaaaa;   /* light grey */
+  --syn-err:     #ff5555;   /* light red */
+  --syn-builtin: #55ffff;   /* light cyan */
+  --syn-const:   #ff55ff;   /* light magenta */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --syn-comment: #7a7772;
-    --syn-keyword: #d49a6a;
-    --syn-string:  #a8b878;
-    --syn-number:  #c8a5d8;
-    --syn-func:    #8fb5d8;
-    --syn-type:    #c9935a;
-    --syn-op:      #9a9a9a;
-    --syn-err:     #d8746a;
-  }
-}
-
-.highlight {
-  background: transparent;
-}
+.highlight { background: transparent; color: #aaaaaa; }
 
 .highlight .c, .highlight .c1, .highlight .cm, .highlight .cp, .highlight .cs { color: var(--syn-comment); font-style: italic; }
 .highlight .err { color: var(--syn-err); }
-.highlight .k, .highlight .kc, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt { color: var(--syn-keyword); }
+.highlight .k, .highlight .kc, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt { color: var(--syn-keyword); font-weight: 500; }
 .highlight .o, .highlight .ow, .highlight .p { color: var(--syn-op); }
 .highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .mo, .highlight .il { color: var(--syn-number); }
 .highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .s1, .highlight .ss { color: var(--syn-string); }
@@ -43,3 +30,6 @@
 .highlight .gd { color: var(--syn-err); }
 .highlight .gi { color: var(--syn-string); }
 .highlight .gh, .highlight .gu { color: var(--syn-keyword); font-weight: 600; }
+.highlight .gp { color: var(--syn-comment); }
+.highlight .gs { font-weight: 700; }
+.highlight .ge { font-style: italic; }

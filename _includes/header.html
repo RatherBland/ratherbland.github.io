@@ -1,12 +1,55 @@
 <header class="site-header">
-  <div class="wrap">
-    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <nav class="site-nav">
-      <a href="{{ '/' | relative_url }}">index</a>
-      <a href="{{ '/tags/' | relative_url }}">tags</a>
-      <a href="{{ '/search/' | relative_url }}">search</a>
-      <a href="{{ '/about/' | relative_url }}">about</a>
-      <a href="{{ '/feed.xml' | relative_url }}">rss</a>
-    </nav>
+  <div class="topbar">
+    <span class="topbar__l">{{ site.title | upcase }} · node 01 · 14400 baud</span>
+    <span class="topbar__r">SYSOP: {{ site.author | upcase }} · {{ site.time | date: "%Y-%m-%d %H:%M" }}</span>
   </div>
+
+  {%- comment -%}
+    The ASCII banner renders only on the home page so it doesn't dominate
+    post/tag/search pages. For individual pages we just show the topbar + menu.
+  {%- endcomment -%}
+  {%- if page.url == "/" -%}
+  <div class="banner" aria-hidden="true">
+<pre>
+ ███╗   ███╗██╗███████╗██╗  ██╗ █████╗
+ ████╗ ████║██║██╔════╝██║  ██║██╔══██╗
+ ██╔████╔██║██║███████╗███████║███████║
+ ██║╚██╔╝██║██║╚════██║██╔══██║██╔══██║
+ ██║ ╚═╝ ██║██║███████║██║  ██║██║  ██║
+ ╚═╝     ╚═╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
+</pre>
+    <span class="banner__strap">welcome to misha-net</span>
+  </div>
+  {%- endif -%}
+
+  {%- assign u = page.url -%}
+  <nav aria-label="Main menu">
+    <ul class="site-nav">
+      <li>
+        <a href="{{ '/' | relative_url }}" {% if u == "/" %}class="active"{% endif %}>
+          <span class="k">[1]</span><span>Read the Weblog</span><span class="c">home</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ '/tags/' | relative_url }}" {% if u contains "/tags" %}class="active"{% endif %}>
+          <span class="k">[2]</span><span>Message Base</span><span class="c">tags</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ '/search/' | relative_url }}" {% if u contains "/search" %}class="active"{% endif %}>
+          <span class="k">[3]</span><span>Full-Text Search</span><span class="c">search</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ '/about/' | relative_url }}" {% if u contains "/about" %}class="active"{% endif %}>
+          <span class="k">[4]</span><span>About the SYSOP</span><span class="c">about</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ '/feed.xml' | relative_url }}">
+          <span class="k">[5]</span><span>Subscribe (RSS)</span><span class="c">feed</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </header>

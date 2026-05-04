@@ -2,26 +2,52 @@
 layout: default
 ---
 <section class="home">
-  {%- if page.content and page.content != "" -%}
+  {%- if content and content != "" -%}
   <div class="home-intro">
     {{ content }}
   </div>
   {%- endif -%}
 
+  <p class="section-head">BULLETIN · LATEST POSTS</p>
+
   <ol class="post-list" reversed>
     {%- for post in site.posts -%}
-    <li class="post-list__item">
-      <time class="post-list__date" datetime="{{ post.date | date_to_xmlschema }}">
-        {{ post.date | date: "%Y-%m-%d" }}
-      </time>
-      <div class="post-list__body">
-        <a class="post-list__title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        {%- assign summary = post.description | default: post.excerpt | strip_html | strip_newlines | normalize_whitespace -%}
-        {%- if summary and summary != "" -%}
-        <p class="post-list__excerpt">{{ summary | truncate: 180 }}</p>
+    {%- assign seq = forloop.index | prepend: "0000" | slice: -4, 4 -%}
+    {%- assign words = post.content | number_of_words -%}
+    {%- assign reading_time = words | divided_by: 220 | at_least: 1 -%}
+    <li class="post-list__item{% if forloop.first %} post-list__item--featured{% endif %}">
+      <p class="post-list__line">
+        <span class="post-list__id">#{{ seq }}</span>
+        <time class="post-list__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+        {%- if post.tags and post.tags.size > 0 -%}
+        <span class="post-list__tagstrip">
+          {%- for tag in post.tags -%}[{{ tag }}]{%- unless forloop.last %} {% endunless -%}{%- endfor -%}
+        </span>
         {%- endif -%}
-      </div>
+        <span class="post-list__min">{{ reading_time }} min</span>
+      </p>
+      <a class="post-list__title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      {%- assign summary = post.description | default: post.excerpt | strip_html | strip_newlines | normalize_whitespace -%}
+      {%- if summary and summary != "" -%}
+      <p class="post-list__excerpt">{{ summary | truncate: 200 }}</p>
+      {%- endif -%}
     </li>
     {%- endfor -%}
   </ol>
+
+  <footer class="site-footer-block">
+    {%- if site.social.links and site.social.links.size > 0 -%}
+    <ul class="site-footer-block__social" aria-label="Social links">
+      {%- for link in site.social.links -%}
+      <li><a href="{{ link.url }}" rel="me noopener" target="_blank">{{ link.label }}</a></li>
+      {%- endfor -%}
+    </ul>
+    {%- endif -%}
+    <p class="site-footer-block__meta">
+      © {{ 'now' | date: '%Y' }} {{ site.author }}. Built with
+      <a href="https://jekyllrb.com/">Jekyll</a>, hosted on
+      <a href="https://pages.github.com/">GitHub Pages</a>, source on
+      <a href="https://github.com/ratherbland/ratherbland.github.io">GitHub</a>.
+    </p>
+  </footer>
 </section>

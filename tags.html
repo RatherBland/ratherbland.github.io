@@ -4,7 +4,7 @@ title: Tags
 permalink: /tags/
 ---
 <section class="tags-index">
-  <h1 class="page-title">Tags</h1>
+  <h1 class="page-title">Tag index</h1>
 
   {%- assign rawtags = "" -%}
   {%- for post in site.posts -%}
@@ -25,19 +25,21 @@ permalink: /tags/
   {%- for tag in tags -%}
     {%- if tag == "" -%}{%- continue -%}{%- endif -%}
     <section class="tag-section" id="{{ tag | slugify }}">
-      <h2 class="tag-heading">#{{ tag }}</h2>
+      <h2 class="tag-heading">{{ tag }}</h2>
       <ol class="post-list" reversed>
         {%- for post in site.posts -%}
           {%- if post.tags contains tag -%}
+          {%- assign seq = forloop.index | prepend: "0000" | slice: -4, 4 -%}
           <li class="post-list__item">
-            <time class="post-list__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
-            <div class="post-list__body">
-              <a class="post-list__title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-              {%- assign summary = post.description | default: post.excerpt | strip_html | strip_newlines | normalize_whitespace -%}
-              {%- if summary and summary != "" -%}
-              <p class="post-list__excerpt">{{ summary | truncate: 160 }}</p>
-              {%- endif -%}
-            </div>
+            <p class="post-list__line">
+              <span class="post-list__id">#{{ seq }}</span>
+              <time class="post-list__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+            </p>
+            <a class="post-list__title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+            {%- assign summary = post.description | default: post.excerpt | strip_html | strip_newlines | normalize_whitespace -%}
+            {%- if summary and summary != "" -%}
+            <p class="post-list__excerpt">{{ summary | truncate: 160 }}</p>
+            {%- endif -%}
           </li>
           {%- endif -%}
         {%- endfor -%}

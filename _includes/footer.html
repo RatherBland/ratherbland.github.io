@@ -1,19 +1,12 @@
-<footer class="site-footer">
-  <div class="wrap">
-    {%- if site.social.links and site.social.links.size > 0 -%}
-    <ul class="site-footer__social" aria-label="Social links">
-      {%- for link in site.social.links -%}
-      <li>
-        <a href="{{ link.url }}" rel="me noopener" target="_blank">{{ link.label }}</a>
-      </li>
-      {%- endfor -%}
-    </ul>
-    {%- endif -%}
-    <p class="site-footer__meta">
-      © {{ 'now' | date: '%Y' }} {{ site.author }}.
-      Built with <a href="https://jekyllrb.com/">Jekyll</a>,
-      hosted on <a href="https://pages.github.com/">GitHub Pages</a>,
-      source on <a href="https://github.com/ratherbland/ratherbland.github.io">GitHub</a>.
-    </p>
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__keys">
+    <a href="{{ '/' | relative_url }}"><b>F1</b>Home</a>
+    <a href="{{ '/tags/' | relative_url }}"><b>F2</b>Tags</a>
+    <a href="{{ '/search/' | relative_url }}"><b>F3</b>Search</a>
+    <a href="{{ '/about/' | relative_url }}"><b>F4</b>About</a>
+    <a href="{{ '/feed.xml' | relative_url }}"><b>F5</b>RSS</a>
+  </div>
+  <div class="site-footer__right">
+    NODE 01 · © {{ 'now' | date: '%Y' }} {{ site.author | upcase }}
   </div>
 </footer>
