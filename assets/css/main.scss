@@ -57,7 +57,7 @@
 
 /* --- reset --- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; font-size: 15px; }
+html { -webkit-text-size-adjust: 100%; font-size: 18px; }
 body {
   margin: 0;
   background: var(--bg);
@@ -98,7 +98,7 @@ body::after {
 
 /* --- layout --- */
 .wrap {
-  max-width: 104ch;
+  max-width: 140ch;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -114,7 +114,7 @@ body::after {
   z-index: 2;
   /* Match .wrap so the topbar + nav line up with the body column
      instead of stretching across the full viewport. */
-  max-width: 104ch;
+  max-width: 140ch;
   margin: 1rem auto 0;
   padding: 0 1rem;
 }
@@ -206,13 +206,13 @@ body::after {
   gap: 0;
   margin: 1rem 0;
   border: 1px solid var(--rule);
-  font-family: var(--font-code);
+  font-family: var(--font-term);
 }
 .node-stats .cell {
   padding: 0.25rem 0.75rem;
   border-right: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
-  font-size: 0.85rem;
+  font-size: 1rem;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -247,11 +247,26 @@ body::after {
   padding: 0.3rem 0.75rem;
   background: var(--c-black);
   border-top: 1px solid var(--rule);
-  font-family: var(--font-code);
-  font-size: 0.92rem;
+  font-family: var(--font-term);
+  font-size: 1rem;
 }
 .dos-prompt .p1 { color: var(--accent); }
 .dos-prompt .p2 { color: var(--ok); }
+.dos-prompt__out {
+  margin: 0.25rem 0 0.4rem;
+  color: var(--text);
+}
+.dos-prompt__out a {
+  color: var(--c-lcyan);
+  text-decoration: none;
+}
+.dos-prompt__out a:hover { text-decoration: underline; }
+.dos-prompt__key {
+  color: var(--muted);
+  display: inline-block;
+  min-width: 5.5em;
+}
+.dos-prompt__next { margin-top: 0.1rem; }
 .dos-prompt .cursor {
   display: inline-block;
   width: 0.6em;
@@ -388,7 +403,7 @@ th { background: rgba(0, 170, 170, 0.12); color: var(--c-lcyan); font-weight: 50
 
 /* --- code --- */
 /* Code blocks swap to Plex Mono — VT323 is charming but painful to read code in. */
-code, pre, kbd, samp { font-family: var(--font-code); font-size: 0.78em; }
+code, pre, kbd, samp { font-family: var(--font-code); font-size: 1em; }
 :not(pre) > code {
   background: var(--c-blue);
   color: var(--c-white);

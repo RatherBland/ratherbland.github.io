@@ -57,22 +57,15 @@ layout: default
 ──────────────────────────  ─  ─  ─  ──────────────────────────</pre>
 
   <div class="dos-prompt">
-    <span class="p1">C:\{{ site.author | upcase }}&gt;</span> <span class="p2">menu</span><span class="cursor" aria-hidden="true"></span>
+    <span class="p1">C:\{{ site.author | upcase }}&gt;</span> <span class="p2">cat socials.txt</span>
+    {%- if site.social.links and site.social.links.size > 0 %}
+    <div class="dos-prompt__out">
+      {%- for link in site.social.links %}
+      <div><span class="dos-prompt__key">{{ link.label }}:</span> <a href="{{ link.url }}" rel="me noopener" target="_blank">{{ link.handle | default: link.url }}</a></div>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+    <div class="dos-prompt__next"><span class="p1">C:\{{ site.author | upcase }}&gt;</span> <span class="cursor" aria-hidden="true"></span></div>
   </div>
 
-  <footer class="site-footer-block">
-    {%- if site.social.links and site.social.links.size > 0 -%}
-    <ul class="site-footer-block__social" aria-label="Social links">
-      {%- for link in site.social.links -%}
-      <li><a href="{{ link.url }}" rel="me noopener" target="_blank">{{ link.label }}</a></li>
-      {%- endfor -%}
-    </ul>
-    {%- endif -%}
-    <p class="site-footer-block__meta">
-      © {{ 'now' | date: '%Y' }} {{ site.author }}. Built with
-      <a href="https://jekyllrb.com/">Jekyll</a>, hosted on
-      <a href="https://pages.github.com/">GitHub Pages</a>, source on
-      <a href="https://github.com/ratherbland/ratherbland.github.io">GitHub</a>.
-    </p>
-  </footer>
 </section>

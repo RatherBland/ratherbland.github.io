@@ -42,8 +42,10 @@ social:
   name: Misha
   links:
     - label: github
+      handle: "@ratherbland"
       url: https://github.com/RatherBland
     - label: linkedin
+      handle: "@guy-bland"
       url: https://www.linkedin.com/in/guy-bland-70403521b/
 
 # Giscus comments (https://giscus.app).
